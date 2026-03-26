@@ -16,8 +16,8 @@ new class extends Component
             <div class="flex gap-3 w-full h-auto">
                 @for ($i = 1; $i <= 4; $i++)
                     <div class="flex gap-2 bg-white shadow-md w-full h-36 rounded-md justify-center items-center">
-                        <div class="flex justify-center items-center h-15 w-[20%] shadow-md bg-amber-400 rounded-md">
-                            <div class="h-10 w-10">
+                        <div class="flex justify-center items-center h-14 w-[18%] shadow-md bg-amber-400 rounded-md">
+                            <div class="h-8 w-8">
                                 <x-zondicon-view-show />
                             </div>
                         </div>
@@ -40,8 +40,13 @@ new class extends Component
                 </div>
 
                 @for ($i = 2; $i <= 3; $i++)
-                    <div class="flex bg-white shadow-md w-full h-full rounded-md justify-center items-center">
-                        <p>{{ $i }}</p>
+                    <div class="flex flex-col bg-white shadow-md w-full h-full rounded-md justify-center items-center">
+                        <div class="flex items-center w-full h-[20%] pl-4 border-b border-gray-200">
+                            <p class="text-sm font-bold">Sales</p>
+                        </div>
+                        <div class="flex justify-center items-center w-full h-[80%]">
+                            <p>{{ $i }}</p>
+                        </div>
                     </div>
                 @endfor
             </div>
