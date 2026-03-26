@@ -8,6 +8,6 @@ new class extends Component
 };
 ?>
 
-<div class="flex pt-14 bg-yellow-500 h-screen w-full">
+<div class="flex pt-14 bg-white shadow-md h-screen w-full">
     <p>Sidebar Content</p>
 </div>
