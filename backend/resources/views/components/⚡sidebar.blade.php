@@ -76,6 +76,11 @@ new class extends Component
                     <p class="text-sm">Inbox</p>
                 </button>
             </div>
+            <div class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
+                <button>
+                    <p class="text-sm">Inbox</p>
+                </button>
+            </div>
 
             {{-- <div class="w-full max-w-md mx-auto space-y-2">
 
