@@ -8,7 +8,7 @@ new class extends Component
 };
 ?>
 
-<div class="flex bg-blue-900 w-full justify-between items-center px-4 py-2">
+<div class="flex bg-blue-900 w-full justify-between items-center shadow-md px-4 py-2">
     <div class="flex gap-3 items-center">
         <div class="border h-10 w-10 rounded-full bg-red-500"></div>
         <p>Nike</p>
