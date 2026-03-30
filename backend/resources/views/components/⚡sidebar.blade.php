@@ -8,7 +8,7 @@ new class extends Component
 };
 ?>
 
-<div class="flex flex-col items-center gap-6 pt-18 bg-white shadow-md h-screen w-full">
+<div class="flex flex-col items-center gap-6 pt-18 bg-white shadow-md h-screen w-full select-none">
 
     <div class="flex flex-col gap w-[90%] h-auto">
         <p class="text-base font-bold">Julian</p>
@@ -18,9 +18,9 @@ new class extends Component
     <div class="flex flex-col items-center gap-6 w-full">
         <div class="flex flex-col gap-2 w-[90%] h-auto rounded-md">
             <div class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
-                <button>
+                <a href="{{ route('home') }}" wire:navigate>
                     <p class="text-sm">Dashboard</p>
-                </button>
+                </a>
             </div>
             <div class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
                 <button>
@@ -40,14 +40,14 @@ new class extends Component
         </div>
         <div class="flex flex-col gap-2 w-[90%] h-auto rounded-md">
             <div class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
-                <button>
+                <a href="{{ route('categories') }}" wire:navigate>
                     <p class="text-sm">Categories</p>
-                </button>
+                </a>
             </div>
             <div class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
-                <button>
+                <a href="{{ route('products') }}" wire:navigate>
                     <p class="text-sm">Products</p>
-                </button>
+                </a>
             </div>
             <div class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
                 <button>
