@@ -39,16 +39,12 @@ new class extends Component
             <p class="text-sm capitalize font-medium">production</p>
         </div>
         <div class="flex flex-col gap-2 w-[90%] h-auto rounded-md">
-            <div class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
-                <a href="{{ route('categories') }}" wire:navigate>
-                    <p class="text-sm">Categories</p>
-                </a>
-            </div>
-            <div class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
-                <a href="{{ route('products') }}" wire:navigate>
-                    <p class="text-sm">Products</p>
-                </a>
-            </div>
+            <a href="{{ route('categories') }}" wire:navigate class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
+                <p class="text-sm">Categories</p>
+            </a>
+            <a href="{{ route('products') }}" wire:navigate class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md {{ request()->routeIs('products') ? 'bg-blue-800' : ''}}">
+                <p class="text-sm">Products</p>
+            </a>
             <div class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
                 <button>
                     <p class="text-sm">Inbox</p>
