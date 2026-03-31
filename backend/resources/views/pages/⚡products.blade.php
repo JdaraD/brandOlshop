@@ -41,8 +41,17 @@ new class extends Component
                         </el-menu>
                     </el-dropdown>
                 </div>
-                <div class="bg-green-500 w-full h-full rounded-md">
-
+                <div class="flex items-center justify-end gap-2 w-full h-full rounded-md">
+                    <div class="flex items-center justify-center w-6 h-8 bg-green-500 hover:bg-green-800 rounded-md crursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" fill="white" y="0px" width="18" height="18" viewBox="0 0 30 30">
+                            <path d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M21,16h-5v5 c0,0.553-0.448,1-1,1s-1-0.447-1-1v-5H9c-0.552,0-1-0.447-1-1s0.448-1,1-1h5V9c0-0.553,0.448-1,1-1s1,0.447,1,1v5h5 c0.552,0,1,0.447,1,1S21.552,16,21,16z"></path>
+                        </svg>
+                    </div>
+                    <div class="flex items-center justify-center w-6 h-8 bg-red-500 hover:bg-red-800 rounded-md crursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" fill="white" y="0px" width="18" height="18" viewBox="0 0 30 30">
+                            <path d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M9,14h12c0.552,0,1,0.447,1,1s-0.448,1-1,1H9c-0.552,0-1-0.447-1-1S8.448,14,9,14z"></path>
+                        </svg>
+                    </div>
                 </div>
             </div>
             <div class="bg-yellow-500 w-full h-full rounded-md">
