@@ -54,45 +54,71 @@ new class extends Component
                     </div>
                 </div>
             </div>
-            <div class="flex flex-wrap gap-2.5 px-2 w-full h-full rounded-md no-scrollbar overflow-y-auto">
-                {{-- @for ($i = 1; $i < 20; $i++) --}}
-                <div class="flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md shrink-0 w-56 h-66 rounded-md cursor-pointer hover:scale-98 transition duration-300 overflow-hidden">
+            <div class="flex justify-center items-start w-full h-full p-2 overflow-y-auto no-scrollbar">
     
-                    <div class="h-40 w-full flex items-center justify-center p-2">
-                        <img src="{{ asset('img/1.png') }}" alt="Product Image" class="max-h-full max-w-full object-contain">
-                    </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+                    
+                    @for ($i = 1; $i <= 4; $i++)
+                    <div class="flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
 
-                    <div class="flex flex-col h-26 w-full bg-gray-100 items-center justify-center p-2 rounded-t-lg">
-                        <p class="text-sm font-semibold">Nike Air Force</p>
-                        <p class="text-gray-500 text-xs">Rp 1.200.000</p>
+                        <!-- Image -->
+                        <div class="h-40 flex items-center justify-center p-2">
+                            <img src="{{ asset('img/1.png') }}" alt="Product Image"class="max-h-full max-w-full object-contain">
+                        </div>
+
+                        <!-- Content -->
+                        <div class="flex flex-col bg-gray-100 text-center p-2">
+                            <p class="text-sm font-semibold">Nike Air Force</p>
+                            <p class="text-gray-500 text-xs">Rp 1.200.000</p>
+                        </div>
+
                     </div>
+                    <div class="flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
+
+                        <!-- Image -->
+                        <div class="h-40 flex items-center justify-center p-2">
+                            <img src="{{ asset('img/2.png') }}" alt="Product Image"class="max-h-full max-w-full object-contain">
+                        </div>
+
+                        <!-- Content -->
+                        <div class="flex flex-col bg-gray-100 text-center p-2">
+                            <p class="text-sm font-semibold">Nike Air Force</p>
+                            <p class="text-gray-500 text-xs">Rp 1.200.000</p>
+                        </div>
+
+                    </div>
+                    <div class="flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
+
+                        <!-- Image -->
+                        <div class="h-40 flex items-center justify-center p-2">
+                            <img src="{{ asset('img/3.png') }}" alt="Product Image"class="max-h-full max-w-full object-contain">
+                        </div>
+
+                        <!-- Content -->
+                        <div class="flex flex-col bg-gray-100 text-center p-2">
+                            <p class="text-sm font-semibold">Nike Air Force</p>
+                            <p class="text-gray-500 text-xs">Rp 1.200.000</p>
+                        </div>
+
+                    </div>
+                    <div class="flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
+
+                        <!-- Image -->
+                        <div class="h-40 flex items-center justify-center p-2">
+                            <img src="{{ asset('img/4.png') }}" alt="Product Image"class="max-h-full max-w-full object-contain">
+                        </div>
+
+                        <!-- Content -->
+                        <div class="flex flex-col bg-gray-100 text-center p-2">
+                            <p class="text-sm font-semibold">Nike Air Force</p>
+                            <p class="text-gray-500 text-xs">Rp 1.200.000</p>
+                        </div>
+
+                    </div>
+                    @endfor
 
                 </div>
-                <div class="flex flex-col bg-linear-to-b from-blue-100 to-blue-200 border-gray-300 shadow-md shrink-0 w-56 h-66 rounded-md cursor-pointer hover:scale-98 transition duration-300 overflow-hidden">
-    
-                    <div class="h-40 w-full flex items-center justify-center p-2">
-                        <img src="{{ asset('img/2.png') }}" alt="Product Image" class="max-h-full max-w-full object-contain">
-                    </div>
 
-                    <div class="flex flex-col h-26 w-full bg-gray-100 items-center justify-center p-2 rounded-t-lg">
-                        <p class="text-sm font-semibold">Nike Air Force</p>
-                        <p class="text-gray-500 text-xs">Rp 1.200.000</p>
-                    </div>
-
-                </div>
-                <div class="flex flex-col bg-linear-to-b from-blue-100 to-blue-200 border-gray-300 shadow-md shrink-0 w-56 h-66 rounded-md cursor-pointer hover:scale-98 transition duration-300 overflow-hidden">
-    
-                    <div class="h-40 w-full flex items-center justify-center p-2">
-                        <img src="{{ asset('img/3.png') }}" alt="Product Image" class="max-h-full max-w-full object-contain">
-                    </div>
-
-                    <div class="flex flex-col h-26 w-full bg-gray-100 items-center justify-center p-2 rounded-t-lg">
-                        <p class="text-sm font-semibold">Nike Air Force</p>
-                        <p class="text-gray-500 text-xs">Rp 1.200.000</p>
-                    </div>
-
-                </div>
-                {{-- @endfor --}}
             </div>
         </div>
     </div>
