@@ -12,7 +12,7 @@
 
         @livewireStyles
     </head>
-    <body class="relative bg-gray-100 font['sans','system-ui','poppins']">
+    <body class="relative bg-gray-100 font['sans','system-ui','poppins'] select-none">
         @if (!request()->routeIs('login') && !request()->routeIs('register'))
             <div class="flex z-10 absolute w-full top-0 left-0">
                 @livewire('header')

@@ -43,12 +43,15 @@ new class extends Component
                 </div>
                 {{-- buttons --}}
                 <div class="flex items-center justify-end gap-2 w-full h-full rounded-md">
-                    <div class="flex items-center justify-center w-6 h-8 bg-green-500 hover:bg-green-800 rounded-md cursor-pointer">
+                    <div id="confirm-delete" class="hidden confrimBtn flex items-center justify-center w-auto px-2 h-8 bg-red-500 hover:bg-red-800 rounded-md cursor-pointer text-white">
+                        Hapus
+                    </div>
+                    <div id="add-overlay" class="flex items-center justify-center w-6 h-8 bg-green-500 hover:bg-green-800 rounded-md cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" fill="white" y="0px" width="18" height="18" viewBox="0 0 30 30">
                             <path d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M21,16h-5v5 c0,0.553-0.448,1-1,1s-1-0.447-1-1v-5H9c-0.552,0-1-0.447-1-1s0.448-1,1-1h5V9c0-0.553,0.448-1,1-1s1,0.447,1,1v5h5 c0.552,0,1,0.447,1,1S21.552,16,21,16z"></path>
                         </svg>
                     </div>
-                    <div class="flex items-center justify-center w-6 h-8 bg-red-500 hover:bg-red-800 rounded-md cursor-pointer">
+                    <div id="deleteBtn" onclick="toggleDeleteMode()" class="flex items-center justify-center w-6 h-8 bg-red-500 hover:bg-red-800 rounded-md cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" fill="white" y="0px" width="18" height="18" viewBox="0 0 30 30">
                             <path d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M9,14h12c0.552,0,1,0.447,1,1s-0.448,1-1,1H9c-0.552,0-1-0.447-1-1S8.448,14,9,14z"></path>
                         </svg>
@@ -57,8 +60,8 @@ new class extends Component
                 {{-- buttons --}}
 
                 {{-- overlay add product --}}
-                <div id="overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50">
-                    <button id="close-overlay" class="absolute w-8 h-8 lg:top-40 lg:right-98 md:top-40 md:right-98 top-6 right-6 text-black hover:text-gray-300 cursor-pointer">
+                <div id="overlayAdd" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50">
+                    <button id="close-overlayAdd" class="absolute w-8 h-8 lg:top-40 lg:right-98 md:top-40 md:right-98 top-6 right-6 text-black hover:text-gray-300 cursor-pointer">
                         @svg('jam-close-circle-f')
                     </button>
                     <div class="flex items-center justify-center w-full min-h-screen p-4">
@@ -115,6 +118,10 @@ new class extends Component
                 </div>
                 {{-- overlay add product --}}
 
+                {{-- overlay delete --}}
+            
+                {{-- overlay delete --}}
+
             </div>
 
             <div class="flex justify-center items-start w-full h-full p-2 overflow-y-auto no-scrollbar">
@@ -122,11 +129,13 @@ new class extends Component
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
                     
                     @for ($i = 1; $i <= 4; $i++)
-                    <div class="flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
+                    <div class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
+
+                        <input type="checkbox" class="select-box hidden absolute top-2 left-2 w-5 h-5 z-40">
 
                         <!-- Image -->
                         <div class="h-40 flex items-center justify-center p-2">
-                            <img src="{{ asset('img/1.png') }}" alt="Product Image"class="max-h-full max-w-full object-contain">
+                            <img src="{{ asset('img/1.png') }}" class="max-h-full max-w-full object-contain">
                         </div>
 
                         <!-- Content -->
@@ -136,7 +145,10 @@ new class extends Component
                         </div>
 
                     </div>
-                    <div class="flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
+
+                    <div class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden has-[input:checked]:border-red-500">
+
+                        <input type="checkbox" class="select-box hidden absolute top-2 left-2 w-5 h-5 z-40">
 
                         <!-- Image -->
                         <div class="h-40 flex items-center justify-center p-2">
@@ -150,7 +162,10 @@ new class extends Component
                         </div>
 
                     </div>
-                    <div class="flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
+
+                    <div class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden has-[input:checked]:border-red-500">
+
+                        <input type="checkbox" class="select-box hidden absolute top-2 left-2 w-5 h-5 z-40">
 
                         <!-- Image -->
                         <div class="h-40 flex items-center justify-center p-2">
@@ -164,7 +179,10 @@ new class extends Component
                         </div>
 
                     </div>
-                    <div class="flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
+
+                    <div class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden has-[input:checked]:border-red-500">
+
+                        <input type="checkbox" class="select-box hidden absolute top-2 left-2 w-5 h-5 z-40">
 
                         <!-- Image -->
                         <div class="h-40 flex items-center justify-center p-2">
@@ -191,11 +209,11 @@ new class extends Component
 <script>
     // overlay add product
 
-    const overlay = document.getElementById('overlay');
-    const closeOverlay = document.getElementById('close-overlay');
+    const overlay = document.getElementById('overlayAdd');
+    const closeOverlay = document.getElementById('close-overlayAdd');
 
     // Show the overlay when the "Add Product" button is clicked
-    document.querySelector('.bg-green-500').addEventListener('click', () => {
+    document.getElementById('add-overlay').addEventListener('click', () => {
         overlay.style.display = 'flex';
     });
 
@@ -205,6 +223,23 @@ new class extends Component
     });
 
     // overlay add product
+
+    // delete product
+    let deleteMode = false;
+
+    document.getElementById('deleteBtn').addEventListener('click', () => {
+        deleteMode = !deleteMode;
+
+
+        document.querySelectorAll('.confrimBtn').forEach(dl => {
+            dl.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.select-box').forEach(dl => {
+            dl.classList.toggle('hidden');
+        });
+    });
+    // delete product
 
 
 </script>
