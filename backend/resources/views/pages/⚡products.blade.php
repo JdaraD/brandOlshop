@@ -41,6 +41,7 @@ new class extends Component
                         </el-menu>
                     </el-dropdown>
                 </div>
+                {{-- buttons --}}
                 <div class="flex items-center justify-end gap-2 w-full h-full rounded-md">
                     <div class="flex items-center justify-center w-6 h-8 bg-green-500 hover:bg-green-800 rounded-md cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" fill="white" y="0px" width="18" height="18" viewBox="0 0 30 30">
@@ -53,7 +54,69 @@ new class extends Component
                         </svg>
                     </div>
                 </div>
+                {{-- buttons --}}
+
+                {{-- overlay add product --}}
+                <div id="overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50">
+                    <button id="close-overlay" class="absolute w-8 h-8 lg:top-40 lg:right-98 md:top-40 md:right-98 top-6 right-6 text-black hover:text-gray-300 cursor-pointer">
+                        @svg('jam-close-circle-f')
+                    </button>
+                    <div class="flex items-center justify-center w-full min-h-screen p-4">
+                        <div class="bg-white rounded-md p-6 shadow-md w-full max-w-3xl">
+                            <h2 class="text-xl font-semibold mb-4 text-center md:text-left">
+                                Add Product
+                            </h2>
+
+                            <form class="flex flex-col gap-4" method="POST" enctype="multipart/form-data">
+                                
+                                <!-- container utama -->
+                                <div class="flex flex-col md:flex-row gap-4">
+
+                                    <!-- kiri -->
+                                    <div class="flex flex-col gap-4 w-full md:w-1/2">
+                                        <select name="category" class="border border-gray-300 rounded-md p-2 outline-none">
+                                            <option disabled selected>Select Category</option>
+                                            <option value="1">Category 1</option>
+                                        </select>
+
+                                        <input type="text" name="product_name" placeholder="Product Name" class="border border-gray-300 rounded-md p-2 outline-none">
+
+                                        <input type="text" name="price" placeholder="Price" class="border border-gray-300 rounded-md p-2 outline-none">
+
+                                        <textarea name="description" rows="4" placeholder="Description" class="border border-gray-300 rounded-md p-2 outline-none"></textarea>
+                                    </div>
+
+                                    <!-- kanan -->
+                                    <div class="flex flex-col gap-2 w-full md:w-1/2">
+                                        <label for="file-upload" class="text-sm text-gray-600">
+                                            Upload Image
+                                        </label>
+
+                                        <label for="file-upload"
+                                            class="flex justify-center items-center border border-dashed border-gray-400 rounded-md h-40 md:h-full w-full cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-500">
+                                            Upload
+                                        </label>
+
+                                        <input id="file-upload" type="file" name="image" class="hidden">
+                                    </div>
+
+                                </div>
+
+                                <!-- button -->
+                                <button type="submit"
+                                    class="bg-green-500 hover:bg-green-800 text-white rounded-md px-4 py-2 mt-2 w-full md:w-auto">
+                                    Add Product
+                                </button>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                {{-- overlay add product --}}
+
             </div>
+
             <div class="flex justify-center items-start w-full h-full p-2 overflow-y-auto no-scrollbar">
     
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
@@ -120,6 +183,28 @@ new class extends Component
                 </div>
 
             </div>
+
         </div>
     </div>
 </div>
+
+<script>
+    // overlay add product
+
+    const overlay = document.getElementById('overlay');
+    const closeOverlay = document.getElementById('close-overlay');
+
+    // Show the overlay when the "Add Product" button is clicked
+    document.querySelector('.bg-green-500').addEventListener('click', () => {
+        overlay.style.display = 'flex';
+    });
+
+    // Hide the overlay when the close button is clicked
+    closeOverlay.addEventListener('click', () => {
+        overlay.style.display = 'none';
+    });
+
+    // overlay add product
+
+
+</script>
