@@ -119,7 +119,22 @@ new class extends Component
                 {{-- overlay add product --}}
 
                 {{-- overlay delete --}}
-            
+                <div id="overlayDelete" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50">
+                    <div class="flex justify-center items-center w-full h-full">
+                        <div class="bg-white rounded-md p-6 shadow-md w-full max-w-sm text-center">
+                            <h2 class="text-xl font-semibold mb-4">Confirm Deletion</h2>
+                            <p class="mb-6">Are you sure you want to delete the selected products?</p>
+                            <div class="flex justify-center gap-4">
+                                <button id="confirm-delete" class="bg-red-500 hover:bg-red-800 text-white rounded-md px-4 py-2">
+                                    Yes, Delete
+                                </button>
+                                <button id="cancel-delete" class="bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-md px-4 py-2">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {{-- overlay delete --}}
 
             </div>
@@ -241,5 +256,18 @@ new class extends Component
     });
     // delete product
 
+    // overlay delete
+    const overlayDelete = document.getElementById('overlayDelete');
+    const cancelDelete = document.getElementById('cancel-delete');
+
+    // show the overlay when the "Confirm Delete" button is clicked
+    document.getElementById('confirm-delete').addEventListener('click', () => {
+        overlayDelete.style.display = 'flex';
+    });
+
+    // hide the overlay when the "Cancel" button is clicked
+    cancelDelete.addEventListener('click', () => {
+        overlayDelete.style.display = 'none';
+    });
 
 </script>
