@@ -144,7 +144,7 @@ new class extends Component
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
                     
                     @for ($i = 1; $i <= 4; $i++)
-                    <div class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
+                    <div id="overlayProductsDetails" class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
 
                         <input type="checkbox" class="select-box hidden absolute top-2 left-2 w-5 h-5 z-40">
 
@@ -217,6 +217,32 @@ new class extends Component
 
             </div>
 
+            {{-- overlay products --}}
+            <div id="overlayProduct" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50">
+                <div class="flex justify-center items-center w-full h-full">
+                    <div class="flex flex-col justify-center items-center gap-4 bg-white rounded-md p-6 shadow-md w-full max-w-sm text-center">
+                        <p class="capitalize">details produtcs</p>
+                        <div class="flex gap-2">
+                            <div class="flex justify-center items-center w-40 h-40 border border-dashed rounded-md">
+                                <img src="{{ asset('img/1.png') }}" alt="" class="max-h-full max-w-full object-contain">
+                            </div>
+
+                            <div class="flex flex-col">
+                                <div>
+                                    <label for="name" class="text-md capitalize">Nama Product</label>
+                                    <p class="text-md capitalize">Adidas max 1</p>
+                                </div>
+                                <div>
+                                    <label for="name" class="text-md capitalize">Nama Product</label>
+                                    <p class="text-md capitalize">Adidas max 1</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="cancel-detailProduct" class="bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-md px-4 py-2"">close</button>
+                    </div>
+                </div>
+            </div>
+            {{-- overlay products --}}
         </div>
     </div>
 </div>
@@ -269,5 +295,21 @@ new class extends Component
     cancelDelete.addEventListener('click', () => {
         overlayDelete.style.display = 'none';
     });
+    // overlay delete
+
+    // overlay detail product
+    const overlayProduct = document.getElementById('overlayProduct');
+    const overlaycloseProduct = document.getElementById('cancel-detailProduct');
+
+    // show teh over when the "open overlay products" button is clicked
+    document.getElementById('overlayProductsDetails').addEventListener('click', () => {
+        overlayProduct.style.display = 'flex';
+    })
+
+    // hiden teh overlay when the "cancel" button is clicked
+    overlaycloseProduct.addEventListener('click', () => {
+        overlayProduct.style.display = 'none';
+    })
+    // overlay detail product
 
 </script>
