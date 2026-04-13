@@ -12,6 +12,7 @@ new class extends Component
     <div class="flex w-[99%] h-[99%] p-4 gap-3">
         <div class="flex flex-col shrink-0 gap-2 bg-white w-full h-full p-4 rounded-md">
             <div class="flex justify-between w-full h-14 rounded-md">
+
                 <div class="flex items-center gap-4 w-auto h-full rounded-md">
                     <div class="flex gap-2 border items-center justify-center border-gray-300 w-60 h-8 rounded-md p-2">
                         <input type="text" placeholder="Search..." class="outline-none">
@@ -41,6 +42,7 @@ new class extends Component
                         </el-menu>
                     </el-dropdown>
                 </div>
+                
                 {{-- buttons --}}
                 <div class="flex items-center justify-end gap-2 w-full h-full rounded-md">
                     <div id="confirm-delete" class="hidden confrimBtn flex items-center justify-center w-auto px-2 h-8 bg-red-500 hover:bg-red-800 rounded-md cursor-pointer text-white">
