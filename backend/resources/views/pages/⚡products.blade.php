@@ -226,8 +226,8 @@ new class extends Component
             <div id="overlayProduct" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50">
                 <div class="flex justify-center items-center w-full h-full">
                     <div class="flex flex-col justify-center items-center gap-6 bg-white rounded-md p-6 shadow-md w-full max-w-sm text-center">
-                        <p class="capitalize font-bold text-lg">details produtcs</p>
-                        <div class="flex flex-col justify-center items-center gap-2">
+                        <p class="capitalize font-bold text-lg">details products</p>
+                        <div class="flex flex-col justify-center items-center gap-4">
                             <div class="flex justify-center items-center w-40 h-40 border border-dashed rounded-md">
                                 <img src="{{ asset('img/1.png') }}" alt="" class="max-h-full max-w-full object-contain">
                             </div>

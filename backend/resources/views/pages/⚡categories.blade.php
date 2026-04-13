@@ -186,6 +186,33 @@ new class extends Component
             </div>
             {{-- products --}}
 
+            {{-- overlay products --}}
+            <div id="overlayProduct" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50">
+                <div class="flex justify-center items-center w-full h-full">
+                    <div class="flex flex-col justify-center items-center gap-6 bg-white rounded-md p-6 shadow-md w-full max-w-sm text-center">
+                        <p class="capitalize font-bold text-lg">details kategori</p>
+                        <div class="flex flex-col justify-center items-center gap-4">
+                            <div class="flex justify-center items-center w-40 h-40 border border-dashed rounded-md">
+                                <img src="{{ asset('img/1.png') }}" alt="" class="max-h-full max-w-full object-contain">
+                            </div>
+
+                            <div class="flex flex-row gap-6 justify-start items-center">
+                                <div class="flex flex-col justify-start items-start gap-1">
+                                    <label for="name" class="text-md capitalize">Nama kategori :</label>
+                                    <p class="text-md capitalize">Sepatu</p>
+                                </div>
+                                <div class="flex flex-col justify-start items-start gap-1">
+                                    <label for="name" class="text-md capitalize">Jumlah Produk :</label>
+                                    <p class="text-md capitalize">10</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="cancel-detailProduct" class="flex capitalize bg-red-600 hover:bg-red-700 text-white rounded-md px-4 py-2">close</button>
+                    </div>
+                </div>
+            </div>
+            {{-- overlay products --}}
+
         </div>
     </div>
 </div>
@@ -238,4 +265,19 @@ new class extends Component
         overlayDelete.style.display = 'none';
     });
     // overlay delete
+
+    // overlay detail product
+    const overlayProduct = document.getElementById('overlayProduct');
+    const overlaycloseProduct = document.getElementById('cancel-detailProduct');
+
+    // show teh over when the "open overlay products" button is clicked
+    document.getElementById('overlayProductsDetails').addEventListener('click', () => {
+        overlayProduct.style.display = 'flex';
+    })
+
+    // hiden teh overlay when the "cancel" button is clicked
+    overlaycloseProduct.addEventListener('click', () => {
+        overlayProduct.style.display = 'none';
+    })
+    // overlay detail product
 </script>
