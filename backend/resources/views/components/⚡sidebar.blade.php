@@ -17,16 +17,12 @@ new class extends Component
 
     <div class="flex flex-col items-center gap-6 w-full">
         <div class="flex flex-col gap-2 w-[90%] h-auto rounded-md">
-            <div class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
-                <a href="{{ route('home') }}" wire:navigate>
-                    <p class="text-sm">Dashboard</p>
-                </a>
-            </div>
-            <div class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
-                <button>
-                    <p class="text-sm">Transactions</p>
-                </button>
-            </div>
+            <a href="{{ route('home') }}" wire:navigate class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 hover:text-white rounded-md {{ request()->routeIs('home') ? 'bg-blue-800 text-white' : ''}}">
+                <p class="text-sm">Dashboard</p>
+            </a>
+            <a href="{{ route('transactions') }}" wire:navigate class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 hover:text-white rounded-md {{ request()->routeIs('transactions') ? 'bg-blue-800 text-white' : ''}}">
+                <p class="text-sm">Transactions</p>
+            </a>
             <div class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
                 <button>
                     <p class="text-sm">Inbox</p>
