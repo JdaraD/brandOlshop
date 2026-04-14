@@ -40,7 +40,7 @@ new class extends Component
                     <div class="flex items-center justify-center w-full min-h-screen p-4">
                         <div class="bg-white rounded-md p-6 shadow-md w-full max-w-3xl">
                             <h2 class="text-xl font-semibold mb-4 text-center md:text-left">
-                                Add Product
+                                Add Kategori
                             </h2>
 
                             <form class="flex flex-col gap-4" method="POST" enctype="multipart/form-data">
@@ -50,14 +50,8 @@ new class extends Component
 
                                     <!-- kiri -->
                                     <div class="flex flex-col gap-4 w-full md:w-1/2">
-                                        <select name="category" class="border border-gray-300 rounded-md p-2 outline-none">
-                                            <option disabled selected>Select Category</option>
-                                            <option value="1">Category 1</option>
-                                        </select>
 
-                                        <input type="text" name="product_name" placeholder="Product Name" class="border border-gray-300 rounded-md p-2 outline-none">
-
-                                        <input type="text" name="price" placeholder="Price" class="border border-gray-300 rounded-md p-2 outline-none">
+                                        <input type="text" name="category_name" placeholder="Category Name" class="border border-gray-300 rounded-md p-2 outline-none">
 
                                         <textarea name="description" rows="4" placeholder="Description" class="border border-gray-300 rounded-md p-2 outline-none"></textarea>
                                     </div>
