@@ -248,8 +248,8 @@ new class extends Component
                             </div>
                         </div>
                         <div class="flex justify-center items-center gap-4">
-                            <button id="cancel-detailProduct" class="flex capitalize bg-green-600 hover:bg-green-700 text-white rounded-md px-4 py-2">Update</button>
-                            <button id="cancel-detailProduct" class="flex capitalize bg-red-600 hover:bg-red-700 text-white rounded-md px-4 py-2">close</button>
+                            <button id="update-detailProduct" class="flex capitalize bg-green-600 hover:bg-green-700 text-white rounded-md px-4 py-2 cursor-pointer">Update</button>
+                            <button id="cancel-detailProduct" class="flex capitalize bg-red-600 hover:bg-red-700 text-white rounded-md px-4 py-2 cursor-pointer">close</button>
                         </div>
                     </div>
                 </div>
