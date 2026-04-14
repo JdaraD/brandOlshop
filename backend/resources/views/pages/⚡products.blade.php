@@ -232,12 +232,16 @@ new class extends Component
                                 <img src="{{ asset('img/1.png') }}" alt="" class="max-h-full max-w-full object-contain">
                             </div>
 
-                            <div class="flex flex-row gap-6 justify-start items-center">
-                                <div class="flex flex-col justify-start items-start gap-1">
+                            <div class="flex flex-col gap-1 justify-start w-full items-start">
+                                <div class="flex flex-row justify-start items-start gap-1">
                                     <label for="name" class="text-md capitalize">Nama Product :</label>
                                     <p class="text-md capitalize">Adidas max 1</p>
                                 </div>
-                                <div class="flex flex-col justify-start items-start gap-1">
+                                <div class="flex flex-row justify-start items-start gap-1">
+                                    <label for="name" class="text-md capitalize">Stock Product :</label>
+                                    <p class="text-md capitalize">10</p>
+                                </div>
+                                <div class="flex flex-row justify-start items-start gap-1">
                                     <label for="name" class="text-md capitalize">Harga :</label>
                                     <p class="text-md capitalize">Rp 1.200.000</p>
                                 </div>
