@@ -33,11 +33,11 @@ new class extends Component
             </div>
             
             {{-- table transactions --}}
-            <div class="w-full overflow-x-auto">
-                <table class="min-w-full bg-white rounded-xl overflow-hidden shadow-md">
+            <div class="w-full overflow-x-auto no-scrollbar">
+                <table class="min-w-full bg-white rounded-xl no-scrollbar shadow-md">
                     
                     <!-- HEADER -->
-                    <thead class="bg-gray-100 text-gray-700 uppercase text-xs tracking-wider">
+                    <thead class="bg-gray-100 text-gray-700 uppercase overflow-hidden text-xs sticky top-0 z-20">
                     <tr>
                         <th class="px-4 py-3 text-left">No</th>
                         <th class="px-4 py-3 text-left">Transaction ID</th>
@@ -52,6 +52,7 @@ new class extends Component
 
                     <!-- BODY -->
                     <tbody class="text-gray-600 text-sm">
+                    @for ($i = 0; $i < 20; $i++) 
                     <tr class="border-b hover:bg-gray-50 transition">
                         <td class="px-4 py-3 text-center">1</td>
                         <td class="px-4 py-3 font-medium text-gray-900">TXN001</td>
@@ -76,6 +77,7 @@ new class extends Component
                             </button>
                         </td>
                     </tr>
+                    @endfor
 
                     <!-- contoh row tambahan -->
                     <tr class="border-b hover:bg-gray-50 transition bg-gray-50/50">
