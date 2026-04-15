@@ -12,13 +12,26 @@ new class extends Component
     <div class="flex w-[99%] h-[99%] p-4 gap-3">
         <div class="flex flex-col shrink-0 gap-4 bg-white w-full h-full p-4 rounded-md">
             <div class="flex justify-between">
-                <div class="flex gap-2 border items-center justify-center border-gray-300 w-60 h-8 rounded-md p-2">
-                    <input type="text" placeholder="Search..." class="outline-none">
-                    <button class="flex h-full w-full items-center justify-center cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 72 72">
-                            <path d="M 31 11 C 19.973 11 11 19.973 11 31 C 11 42.027 19.973 51 31 51 C 34.974166 51 38.672385 49.821569 41.789062 47.814453 L 54.726562 60.751953 C 56.390563 62.415953 59.088953 62.415953 60.751953 60.751953 C 62.415953 59.087953 62.415953 56.390563 60.751953 54.726562 L 47.814453 41.789062 C 49.821569 38.672385 51 34.974166 51 31 C 51 19.973 42.027 11 31 11 z M 31 19 C 37.616 19 43 24.384 43 31 C 43 37.616 37.616 43 31 43 C 24.384 43 19 37.616 19 31 C 19 24.384 24.384 19 31 19 z"></path>
-                        </svg>
+                <div class="flex items-center gap-4 w-auto h-full rounded-md">
+                
+                    <div class="flex gap-2 border items-center justify-center border-gray-300 w-60 h-8 rounded-md p-2">
+                        <input type="text" placeholder="Search..." class="outline-none">
+                        <button class="flex h-full w-full items-center justify-center cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 72 72">
+                                <path d="M 31 11 C 19.973 11 11 19.973 11 31 C 11 42.027 19.973 51 31 51 C 34.974166 51 38.672385 49.821569 41.789062 47.814453 L 54.726562 60.751953 C 56.390563 62.415953 59.088953 62.415953 60.751953 60.751953 C 62.415953 59.087953 62.415953 56.390563 60.751953 54.726562 L 47.814453 41.789062 C 49.821569 38.672385 51 34.974166 51 31 C 51 19.973 42.027 11 31 11 z M 31 19 C 37.616 19 43 24.384 43 31 C 43 37.616 37.616 43 31 43 C 24.384 43 19 37.616 19 31 C 19 24.384 24.384 19 31 19 z"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <button id="btnCalender" class="flex h-full w-full items-center justify-center px-2 py-1 border border-gray-300 hover:bg-gray-300 rounded-md cursor-pointer">
+                        <i class="fa-solid fa-calendar text-[#183153]"></i>
                     </button>
+
+                    {{-- overlay calender --}}
+                    <div id="overlay-calender" class="hidden absolute top-32 left-130 bg-white p-4 rounded-md shadow-lg z-20 transition duration-200">
+                        <input type="date" class="border border-gray-300 rounded-md p-2">
+                    </div>
+                    {{-- overlay calender --}}
                 </div>
 
                 {{-- download transactions --}}
@@ -26,7 +39,6 @@ new class extends Component
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="white" size="20" width="18" height="18">
                         <path d="M352 96C352 78.3 337.7 64 320 64C302.3 64 288 78.3 288 96L288 306.7L246.6 265.3C234.1 252.8 213.8 252.8 201.3 265.3C188.8 277.8 188.8 298.1 201.3 310.6L297.3 406.6C309.8 419.1 330.1 419.1 342.6 406.6L438.6 310.6C451.1 298.1 451.1 277.8 438.6 265.3C426.1 252.8 405.8 252.8 393.3 265.3L352 306.7L352 96zM160 384C124.7 384 96 412.7 96 448L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 448C544 412.7 515.3 384 480 384L433.1 384L376.5 440.6C345.3 471.8 294.6 471.8 263.4 440.6L206.9 384L160 384zM464 440C477.3 440 488 450.7 488 464C488 477.3 477.3 488 464 488C450.7 488 440 477.3 440 464C440 450.7 450.7 440 464 440z"/>
                     </svg>
-                    <i class="fa-solid fa-download"></i>
                 </div>
                 {{-- download transactions --}}
 
@@ -37,7 +49,7 @@ new class extends Component
                 <table class="min-w-full bg-white rounded-xl no-scrollbar shadow-md">
                     
                     <!-- HEADER -->
-                    <thead class="bg-gray-100 text-gray-700 uppercase overflow-hidden text-xs sticky top-0 z-20">
+                    <thead class="bg-gray-100 text-gray-700 uppercase overflow-hidden text-xs sticky top-0 z-10">
                     <tr>
                         <th class="px-4 py-3 text-left">No</th>
                         <th class="px-4 py-3 text-left">Transaction ID</th>
@@ -112,3 +124,32 @@ new class extends Component
         </div>
     </div>
 </div>
+
+<script>
+    // script untuk toggle overlay calender
+    const btnCalender = document.getElementById('btnCalender');
+    const overlayCalender = document.getElementById('overlay-calender');
+
+    // open overlay calender when click btn calender
+    btnCalender.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (overlayCalender.style.display === 'flex') {
+            overlayCalender.style.display = 'none';
+            btnCalender.classList.remove('bg-gray-300');
+        } else {
+            overlayCalender.style.display = 'flex';
+            btnCalender.classList.add('bg-gray-300');
+        }
+    })
+
+    overlayCalender.addEventListener('click', (e) => {
+        e.stopPropagation();
+    })
+
+    // close overlay calender when click outside
+    document.addEventListener('click', () => {
+        overlayCalender.style.display = 'none';
+    })
+    // script untuk toggle overlay calender
+
+</script>
