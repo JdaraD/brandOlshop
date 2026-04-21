@@ -81,7 +81,7 @@ new class extends Component
                             <button id="btnView" class="px-2 py-1 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition cursor-pointer">
                                 View
                             </button>
-                            <button class="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">
+                            <button id="btnDelete" class="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">
                                 delete
                             </button>
                         </td>
@@ -151,9 +151,9 @@ new class extends Component
                                             <td class="px-4 py-3">$100.00</td>
                                             <td class="px-4 py-3">
                                             <select name="category" class="border border-green-300 rounded-md p-2 outline-none">
-                                                <option value="1" disabled selected>Pending</option>
-                                                <option value="2">Selesai</option>
-                                                <option value="3">Gagal</option>
+                                                <option value="1" disabled selected class="text-yellow-600">Pending</option>
+                                                <option value="2" class="text-green-600">Selesai</option>
+                                                <option value="3" class="text-red-600">Gagal</option>
                                             </select>
                                             </td>
                                         </tr>
@@ -176,13 +176,22 @@ new class extends Component
             {{-- overlay view --}}
 
             {{-- overlay Update --}}
-            {{-- <div id="overlayUpdate" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-20">
+            <div id="overlayUpdate" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-20">
                 <div class="flex justify-center items-center w-full h-full">
                     <div class="flex flex-col gap-2 bg-white p-4 h-auto w-auto shadow-md rounded-md z-20 transition duration-200">
-                        <p>test </p>
+                        <h2 class="text-xl font-semibold mb-4">Confirm Deletion</h2>
+                        <p class="mb-6">Are you sure you want to delete the data transaction?</p>
+                        <div class="flex justify-center gap-4">
+                            <button id="confirm-delete" class="bg-red-500 hover:bg-red-800 text-white rounded-md px-4 py-2">
+                                Yes, Delete
+                            </button>
+                            <button id="cancel-delete" class="bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-md px-4 py-2">
+                                Cancel
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
             {{-- overlay Update --}}
         </div>
     </div>
@@ -229,4 +238,23 @@ new class extends Component
     closeBtnView.addEventListener('click', () => {
         overlayView.style.display = 'none';
     })
+    // script untuk toggle overlay view
+
+    // script untuk toggle overlay delete
+    const btnDelete = document.getElementById('btnDelete');
+    const overlayUpdate = document.getElementById('overlayUpdate');
+    const cancelDelete = document.getElementById('cancel-delete');
+
+    // open overlay delete when click btn delete
+    btnDelete.addEventListener('click', () => {
+        overlayUpdate.style.display = 'flex';
+    })
+
+    // close overlay delete when click cancel button
+    cancelDelete.addEventListener('click', () => {
+        overlayUpdate.style.display = 'none';
+    })
+    // script untuk toggle overlay delete
+
+
 </script>
