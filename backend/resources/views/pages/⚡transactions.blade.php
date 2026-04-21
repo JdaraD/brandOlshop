@@ -64,9 +64,9 @@ new class extends Component
 
                     <!-- BODY -->
                     <tbody class="text-gray-600 text-sm">
-                    @for ($i = 0; $i < 20; $i++) 
+                    @for ($i = 1; $i < 20; $i++) 
                     <tr class="border-b hover:bg-gray-50 transition">
-                        <td class="px-4 py-3 text-center">1</td>
+                        <td class="px-4 py-3 text-center">{{$i}}</td>
                         <td class="px-4 py-3 font-medium text-gray-900">TXN001</td>
                         <td class="px-4 py-3">Produk A</td>
                         <td class="px-4 py-3">2</td>
@@ -80,9 +80,6 @@ new class extends Component
                         <td class="px-3 py-2">
                             <button id="btnView" class="px-2 py-1 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition cursor-pointer">
                                 View
-                            </button>
-                            <button class="px-2 py-1 text-xs font-medium text-white bg-green-600 rounded-md hover:bg-green-700 transition cursor-pointer">
-                                Update
                             </button>
                             <button class="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">
                                 delete
@@ -107,9 +104,6 @@ new class extends Component
                         <td class="px-3 py-2">
                             <button class="px-2 py-1 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition cursor-pointer">
                                 View
-                            </button>
-                            <button class="px-2 py-1 text-xs font-medium text-white bg-green-600 rounded-md hover:bg-green-700 transition cursor-pointer">
-                                Update
                             </button>
                             <button class="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">
                                 delete
@@ -156,9 +150,11 @@ new class extends Component
                                             <td class="px-4 py-3">2023-10-01</td>
                                             <td class="px-4 py-3">$100.00</td>
                                             <td class="px-4 py-3">
-                                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-600">
-                                                Pending
-                                            </span>
+                                            <select name="category" class="border border-green-300 rounded-md p-2 outline-none">
+                                                <option value="1" disabled selected>Pending</option>
+                                                <option value="2">Selesai</option>
+                                                <option value="3">Gagal</option>
+                                            </select>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -168,14 +164,26 @@ new class extends Component
 
 
                         </div>
-                        <div class="flex justify-end">
+                        <div class="flex gap-2 justify-end">
+                            <button class="px-2 py-1 text-xs font-medium text-white bg-green-600 rounded-md hover:bg-green-700 transition cursor-pointer">
+                                Update
+                            </button>
                             <button id="closeBtnView" class="px-2 py-1 text-md font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">Close</button>
-
                         </div>
                     </div>
                 </div>
             </div>
             {{-- overlay view --}}
+
+            {{-- overlay Update --}}
+            {{-- <div id="overlayUpdate" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-20">
+                <div class="flex justify-center items-center w-full h-full">
+                    <div class="flex flex-col gap-2 bg-white p-4 h-auto w-auto shadow-md rounded-md z-20 transition duration-200">
+                        <p>test </p>
+                    </div>
+                </div>
+            </div> --}}
+            {{-- overlay Update --}}
         </div>
     </div>
 </div>
