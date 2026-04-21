@@ -78,7 +78,7 @@ new class extends Component
                         </span>
                         </td>
                         <td class="px-3 py-2">
-                            <button class="px-2 py-1 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition cursor-pointer">
+                            <button id="btnView" class="px-2 py-1 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition cursor-pointer">
                                 View
                             </button>
                             <button class="px-2 py-1 text-xs font-medium text-white bg-green-600 rounded-md hover:bg-green-700 transition cursor-pointer">
@@ -121,6 +121,61 @@ new class extends Component
                 </table>
             </div>
             {{-- table transactions --}}
+
+            {{-- overlay view --}}
+            <div id="overlayView" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-20">
+                <div class="flex justify-center items-center w-full h-full">
+                    <div class="flex flex-col gap-2 bg-white p-4 h-auto w-auto shadow-md rounded-md z-20 transition duration-200">
+                        <h1 class="text-lg font-bold">Transaction Details</h1>
+                        <div class="flex h-[80%] w-full">
+                            {{-- table view --}}
+                            <div class="w-full overflow-x-auto no-scrollbar">
+                                <table class="min-w-full bg-white rounded-xl no-scrollbar shadow-md">
+                                    <thead class="bg-gray-100 text-gray-700 uppercase overflow-hidden text-xs top-0">
+                                        <tr>
+                                            <th class="px-4 py-3 text-left">No</th>
+                                            <th class="px-4 py-3 text-left">Transaction ID</th>
+                                            <th class="px-4 py-3 text-left">Name</th>
+                                            <th class="px-4 py-3 text-left">Gmail</th>
+                                            <th class="px-4 py-3 text-left">Nama Produk</th>
+                                            <th class="px-4 py-3 text-left">Quantity</th>
+                                            <th class="px-4 py-3 text-left">Tanggal</th>
+                                            <th class="px-4 py-3 text-left">Harga</th>
+                                            <th class="px-4 py-3 text-left">Status</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody class="text-gray-600 text-sm">
+                                        <tr class="hover:bg-gray-50 transition">
+                                            <td class="px-4 py-3 text-center">1</td>
+                                            <td class="px-4 py-3 font-medium text-gray-900">TXN001</td>
+                                            <td class="px-4 py-3">John Doe</td>
+                                            <td class="px-4 py-3">john.doe@example.com</td>
+                                            <td class="px-4 py-3">Produk A</td>
+                                            <td class="px-4 py-3">2</td>
+                                            <td class="px-4 py-3">2023-10-01</td>
+                                            <td class="px-4 py-3">$100.00</td>
+                                            <td class="px-4 py-3">
+                                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-600">
+                                                Pending
+                                            </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            {{-- table view --}}
+
+
+                        </div>
+                        <div class="flex justify-end">
+                            <button id="closeBtnView" class="px-2 py-1 text-md font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- overlay view --}}
         </div>
     </div>
 </div>
@@ -152,4 +207,18 @@ new class extends Component
     })
     // script untuk toggle overlay calender
 
+    // script untuk toggle overlay view
+    const btnView = document.getElementById('btnView');
+    const overlayView = document.getElementById('overlayView');
+    const closeBtnView = document.getElementById('closeBtnView');
+
+    // open overlay view when click btn view
+    btnView.addEventListener('click', () => {
+        overlayView.style.display = 'flex';
+    })
+
+    // close overlay view when click close button
+    closeBtnView.addEventListener('click', () => {
+        overlayView.style.display = 'none';
+    })
 </script>
