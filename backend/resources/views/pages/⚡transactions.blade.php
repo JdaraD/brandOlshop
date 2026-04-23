@@ -221,6 +221,7 @@ new class extends Component
     // close overlay calender when click outside
     document.addEventListener('click', () => {
         overlayCalender.style.display = 'none';
+        btnCalender.classList.remove('bg-gray-300');
     })
     // script untuk toggle overlay calender
 
