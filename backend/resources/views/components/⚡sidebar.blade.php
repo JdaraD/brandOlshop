@@ -23,7 +23,7 @@ new class extends Component
             <a href="{{ route('transactions') }}" wire:navigate class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 hover:text-white rounded-md {{ request()->routeIs('transactions') ? 'bg-blue-800 text-white' : ''}}">
                 <p class="text-sm">Transactions</p>
             </a>
-            <a href="#" wire:navigate class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 hover:text-white rounded-md">
+            <a href="{{ route('inboxs') }}" wire:navigate class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 hover:text-white rounded-md  {{ request()->routeIs('inboxs') ? 'bg-blue-800 text-white' : ''}}">
                 <p class="text-sm">Inbox</p>
             </a>
     
