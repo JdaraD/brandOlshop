@@ -45,7 +45,7 @@ new class extends Component
             </div>
             
             {{-- table transactions --}}
-            <div class="w-full overflow-x-auto no-scrollbar">
+            <div class="w-full h-full overflow-x-auto no-scrollbar">
                 <table class="min-w-full bg-white rounded-xl no-scrollbar shadow-md">
                     
                     <!-- HEADER -->
@@ -182,10 +182,10 @@ new class extends Component
                         <h2 class="text-xl font-semibold mb-4">Confirm Deletion</h2>
                         <p class="mb-6">Are you sure you want to delete the data transaction?</p>
                         <div class="flex justify-center gap-4">
-                            <button id="confirm-delete" class="bg-red-500 hover:bg-red-800 text-white rounded-md px-4 py-2">
+                            <button id="confirm-delete" class="bg-green-500 hover:bg-green-800 text-white rounded-md px-4 py-2">
                                 Yes, Delete
                             </button>
-                            <button id="cancel-delete" class="bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-md px-4 py-2">
+                            <button id="cancel-delete" class="bg-red-500 hover:bg-red-800 text-white rounded-md px-4 py-2">
                                 Cancel
                             </button>
                         </div>

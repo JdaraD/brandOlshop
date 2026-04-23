@@ -10,10 +10,11 @@ new class extends Component
 
 <div class="flex pt-14 justify-center items-center w-full h-screen rounded-md">
     <div class="flex w-[99%] h-[99%] p-4 gap-3">
-        <div class="flex flex-col shrink-0 gap-2 bg-white w-full h-full p-4 rounded-md">
+        <div class="flex flex-col shrink-0 gap-4 bg-white w-full h-full p-4 rounded-md">
             <div class="flex justify-between">
                 <div class="flex items-center gap-4 w-auto h-full rounded-md">
                 
+                    {{-- search box --}}
                     <div class="flex gap-2 border items-center justify-center border-gray-300 w-60 h-8 rounded-md p-2">
                         <input type="text" placeholder="Search..." class="outline-none">
                         <button class="flex h-full w-full items-center justify-center cursor-pointer">
@@ -26,6 +27,7 @@ new class extends Component
                     <button id="btnCalender" class="flex h-full w-full items-center justify-center px-2 py-1 border border-gray-300 hover:bg-gray-300 rounded-md cursor-pointer">
                         <i class="fa-solid fa-calendar text-[#183153]"></i>
                     </button>
+                    {{-- search box --}}
 
                     {{-- overlay calender --}}
                     <div id="overlay-calender" class="hidden absolute top-32 left-130 bg-white p-4 rounded-md shadow-lg z-20 transition duration-200">
@@ -42,6 +44,72 @@ new class extends Component
                 </div> --}}
                 {{-- download transactions --}}
 
+            </div>
+
+            <div class="w-full h-full overflow-x-auto no-scrollbar">
+                {{-- <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="text-sm text-gray-500">Online</span>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <div class="w-3 h-3 rounded-full bg-gray-300"></div>
+                        <span class="text-sm text-gray-500">Offline</span>
+                    </div>
+                </div> --}}
+                <div class="grid grid-cols-2 gap-2">
+                    @for ($i = 1; $i <= 6; $i++)
+                        <div class="flex flex-col w-full h-30 bg-white border border-gray-300 rounded-md shadow-md hover:shadow-xl transition duration-200">
+                            <div class="flex flex-col gap-1 p-4">
+                                <h3 class="text-base font-bold text-black">Inbox {{ $i }}</h3>
+                                <p class="text-sm text-black">Details of inbox message {{ $i }}</p>
+                            </div>
+                            <div class="flex w-full justify-end px-2 gap-2">
+                                <button id="openViweInbox" class="flex items-center justify-center w-8 h-6 bg-green-500 hover:bg-green-600 rounded-md cursor-pointer">
+                                    <i class="fa-solid fa-eye text-xs text-white"></i>
+                                </button>
+                                <button id="openDeleteInbox" class="flex items-center justify-center w-8 h-6 bg-red-500 hover:bg-red-600 rounded-md cursor-pointer">
+                                    <i class="fa-solid fa-trash text-xs text-white"></i>
+                                </button>
+                            </div>
+                        </div>
+                    @endfor
+
+                    {{-- overlay detail inbox --}}
+                    <div id="overlay-detail-inbox" class="hidden fixed inset-0 bg-black/50 backdrop-blur-md z-20">
+                        <div class="flex flex-col justify-center items-center w-full h-full">
+                            <div class="flex flex-col gap-4 bg-white p-4 rounded-md transition duration-200">
+                                <div class="flex flex-col gap-2">
+                                    <h3 class="text-lg font-bold text-black">Detail Inbox</h3>
+                                    <p class="text-sm text-black">This is the detail content for the selected inbox message.</p>
+                                </div>
+                                <div class="flex gap-2 justify-end">
+                                    <button id="closeBtnView" class="px-2 py-1 text-md font-medium text-white bg-red-500 rounded-md hover:bg-red-800 transition cursor-pointer">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- overlay detail inbox --}}
+
+                    {{-- overlay delete inbox --}}
+                    <div id="overlay-delete-inbox" class="hidden fixed inset-0 bg-black/50 backdrop-blur-md z-20">
+                        <div class="flex flex-col justify-center items-center w-full h-full">
+                            <div class="flex flex-col gap-4 bg-white p-4 rounded-md transition duration-200">
+                                <div class="flex flex-col gap-2">
+                                    <h3 class="text-lg font-bold text-black">Delete Inbox</h3>
+                                    <p class="text-sm text-black">Are you sure you want to delete this inbox message?</p>
+                                </div>
+                                <div class="flex gap-2 justify-end">
+                                    <button id="confirm-delete" class="bg-green-500 hover:bg-green-800 text-white rounded-md px-2 py-1 transition cursor-pointer">
+                                        Yes, Delete
+                                    </button>
+                                    <button id="closeBtnDelete" class="px-2 py-1 text-md font-medium text-white bg-red-500 rounded-md hover:bg-red-800 transition cursor-pointer">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- overlay delete inbox --}}
+                </div>
             </div>
         </div>
     </div>
@@ -74,4 +142,38 @@ new class extends Component
         btnCalender.classList.remove('bg-gray-300');
     })
     // script untuk toggle overlay calender
+
+    // script untuk toggle overlay detail inbox
+    const openViweInbox = document.getElementById('openViweInbox');
+    const overlayDetailInbox = document.getElementById('overlay-detail-inbox');
+    const closeBtnView = document.getElementById('closeBtnView');
+
+    // open overlay detail inbox when click btn view
+    openViweInbox.addEventListener('click', () => {
+        overlayDetailInbox.style.display = 'flex';
+    })
+
+    // close overlay detail inbox when click btn close
+    closeBtnView.addEventListener('click', () => {
+        overlayDetailInbox.style.display = 'none';
+    })
+    // script untuk toggle overlay detail inbox
+
+    // script untuk toggle overlay delete inbox
+    const openDeleteInbox = document.getElementById('openDeleteInbox');
+    const overlayDeleteInbox = document.getElementById('overlay-delete-inbox');
+    const closeBtnDelete = document.getElementById('closeBtnDelete');
+
+    // open overlay delete inbox when click btn delete
+    openDeleteInbox.addEventListener('click', () => {
+        overlayDeleteInbox.style.display = 'flex';
+    })
+
+    // close overlay delete inbox when click btn close
+    closeBtnDelete.addEventListener('click', () => {
+        overlayDeleteInbox.style.display = 'none';
+    })
+    // script untuk toggle overlay delete inbox
+
+
 </script>
