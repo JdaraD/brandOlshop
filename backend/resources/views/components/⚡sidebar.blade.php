@@ -48,29 +48,15 @@ new class extends Component
         </div>
 
         <div class="flex flex-col gap w-[90%] h-auto p-2 bg-amber-300 rounded-md">
-            <p class="text-sm capitalize font-medium">account</p>
+            <p class="text-sm capitalize font-medium">Settings</p>
         </div>
         <div class="flex flex-col gap-2 w-[90%] h-auto rounded-md">
-            <div class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
-                <button>
-                    <p class="text-sm">Inbox</p>
-                </button>
-            </div>
-            <div class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
-                <button>
-                    <p class="text-sm">Inbox</p>
-                </button>
-            </div>
-            <div class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
-                <button>
-                    <p class="text-sm">Inbox</p>
-                </button>
-            </div>
-            <div class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 rounded-md">
-                <button>
-                    <p class="text-sm">Inbox</p>
-                </button>
-            </div>
+            <a href="#" wire:navigate class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 hover:text-white rounded-md {{ request()->routeIs('profile') ? 'bg-blue-800 text-white' : ''}}">
+                <p class="text-sm">Profile</p>
+            </a>
+            <a href="{{ route('accounts') }}" wire:navigate class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 hover:text-white rounded-md {{ request()->routeIs('accounts') ? 'bg-blue-800 text-white' : ''}}">
+                <p class="text-sm">Accounts</p>
+            </a>
 
             {{-- <div class="w-full max-w-md mx-auto space-y-2">
 
