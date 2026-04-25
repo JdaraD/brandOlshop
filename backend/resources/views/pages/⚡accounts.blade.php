@@ -11,7 +11,7 @@ new class extends Component
 <div class="flex pt-14 justify-center items-center w-full h-screen rounded-md">
     <div class="flex w-[99%] h-[99%] p-4 gap-3">
         <div class="flex flex-col shrink-0 gap-4 bg-white w-full h-full p-4 rounded-md">
-                        <div class="flex justify-between">
+            <div class="flex justify-between">
                 <div class="flex items-center gap-4 w-auto h-full rounded-md">
                 
                     <div class="flex gap-2 border items-center justify-center border-gray-300 w-60 h-8 rounded-md p-2">
@@ -35,10 +35,8 @@ new class extends Component
                 </div>
 
                 {{-- download transactions --}}
-                <div id="add-overlay" class="flex items-center justify-center w-6 h-8 bg-green-500 hover:bg-green-800 rounded-md cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="white" size="20" width="18" height="18">
-                        <path d="M352 96C352 78.3 337.7 64 320 64C302.3 64 288 78.3 288 96L288 306.7L246.6 265.3C234.1 252.8 213.8 252.8 201.3 265.3C188.8 277.8 188.8 298.1 201.3 310.6L297.3 406.6C309.8 419.1 330.1 419.1 342.6 406.6L438.6 310.6C451.1 298.1 451.1 277.8 438.6 265.3C426.1 252.8 405.8 252.8 393.3 265.3L352 306.7L352 96zM160 384C124.7 384 96 412.7 96 448L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 448C544 412.7 515.3 384 480 384L433.1 384L376.5 440.6C345.3 471.8 294.6 471.8 263.4 440.6L206.9 384L160 384zM464 440C477.3 440 488 450.7 488 464C488 477.3 477.3 488 464 488C450.7 488 440 477.3 440 464C440 450.7 450.7 440 464 440z"/>
-                    </svg>
+                <div id="add-overlay" class="flex items-center justify-center p-2 bg-green-500 hover:bg-green-800 rounded-md cursor-pointer">
+                    <p class="text-xs capitalize text-white font-medium">Add Account</p>
                 </div>
                 {{-- download transactions --}}
 
@@ -143,5 +141,31 @@ new class extends Component
 </div>
 
 <script>
+    // script untuk toggle overlay calender
+    const btnCalender = document.getElementById('btnCalender');
+    const overlayCalender = document.getElementById('overlay-calender');
+
+    // open overlay calender when click btn calender
+    btnCalender.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (overlayCalender.style.display === 'flex') {
+            overlayCalender.style.display = 'none';
+            btnCalender.classList.remove('bg-gray-300');
+        } else {
+            overlayCalender.style.display = 'flex';
+            btnCalender.classList.add('bg-gray-300');
+        }
+    })
+
+    overlayCalender.addEventListener('click', (e) => {
+        e.stopPropagation();
+    })
+
+    // close overlay calender when click outside
+    document.addEventListener('click', () => {
+        overlayCalender.style.display = 'none';
+        btnCalender.classList.remove('bg-gray-300');
+    })
+    // script untuk toggle overlay calender
 
 </script>
