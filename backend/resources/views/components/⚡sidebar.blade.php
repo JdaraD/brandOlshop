@@ -51,8 +51,8 @@ new class extends Component
             <p class="text-sm capitalize font-medium">Settings</p>
         </div>
         <div class="flex flex-col gap-2 w-[90%] h-auto rounded-md">
-            <a href="#" wire:navigate class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 hover:text-white rounded-md {{ request()->routeIs('profile') ? 'bg-blue-800 text-white' : ''}}">
-                <p class="text-sm">Profile</p>
+            <a href="{{ route('profile-website') }}" wire:navigate class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 hover:text-white rounded-md {{ request()->routeIs('profile-website') ? 'bg-blue-800 text-white' : ''}}">
+                <p class="text-sm">Profile Website</p>
             </a>
             <a href="{{ route('accounts') }}" wire:navigate class="flex gap-3 w-full h-auto p-2 hover:bg-blue-800 hover:text-white rounded-md {{ request()->routeIs('accounts') ? 'bg-blue-800 text-white' : ''}}">
                 <p class="text-sm">Accounts</p>
