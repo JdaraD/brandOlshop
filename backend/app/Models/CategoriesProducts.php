@@ -9,8 +9,6 @@ class CategoriesProducts extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'order',
-        'is_active',
         'name',
         'description',
         'image',

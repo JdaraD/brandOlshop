@@ -1,11 +1,38 @@
 <?php
 
 use Livewire\Component;
+use App\Models\CategoriesProducts;
 
 new class extends Component
 {
-    //
-};
+    public $categories;
+    public $showDetailOverlay = false;
+    public $selectedCategory = null;
+
+    // ambil data categories
+    public function loadCategories()
+    {
+        $this->categories = CategoriesProducts::latest()->get();
+    }
+
+    // munculkan data ke view
+    public function mount()
+    {
+        $this->loadCategories();
+    }
+
+    public function showDetails($id)
+    {
+        $this->selectedCategory = CategoriesProducts::find($id);
+        $this->showDetailOverlay = true;
+    }
+
+    public function closeDetails()
+    {
+        $this->showDetailOverlay = false;
+        $this->selectedCategory = null;
+    }
+};  
 ?>
 
 <div class="flex pt-14 justify-center items-center w-full h-screen rounded-md">
@@ -43,15 +70,15 @@ new class extends Component
                                 Add Kategori
                             </h2>
 
-                            <form class="flex flex-col gap-4" method="POST" enctype="multipart/form-data">
-                                
+                            <form action="{{ route('categories-products.store') }}" class="flex flex-col gap-4" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <!-- container utama -->
                                 <div class="flex flex-col md:flex-row gap-4">
 
                                     <!-- kiri -->
                                     <div class="flex flex-col gap-4 w-full md:w-1/2">
 
-                                        <input type="text" name="category_name" placeholder="Category Name" class="border border-gray-300 rounded-md p-2 outline-none">
+                                        <input type="text" name="name" placeholder="Category Name" class="border border-gray-300 rounded-md p-2 outline-none">
 
                                         <textarea name="description" rows="4" placeholder="Description" class="border border-gray-300 rounded-md p-2 outline-none"></textarea>
                                     </div>
@@ -67,7 +94,9 @@ new class extends Component
                                             Upload
                                         </label>
 
-                                        <input id="file-upload" type="file" name="image" class="hidden">
+                                        <input id="file-upload" type="file" name="image" class="hidden" onchange="previewImage(event)">
+
+                                        <img id="preview" class="hidden w-full h-40 object-cover rounded-md" />
                                     </div>
 
                                 </div>
@@ -106,102 +135,66 @@ new class extends Component
 
             </div>
 
-            {{-- products --}}
+            {{-- Card products --}}
             <div class="flex justify-center items-start w-full h-full p-2 overflow-y-auto no-scrollbar">
     
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
                     
-                    <div id="overlayProductsDetails" class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
-
-                        <input type="checkbox" class="select-box hidden absolute top-2 left-2 w-5 h-5 z-40">
-
-                        <!-- Image -->
-                        <div class="h-40 flex items-center justify-center p-2">
-                            <img src="{{ asset('img/1.png') }}" class="max-h-full max-w-full object-contain">
+                    @if ($categories->isEmpty())
+                        <p class="text-center text-gray-500">No categories found.</p>
+                        
+                    @else
+                        @foreach ($categories as $item)
+                            
+                        <div wire:click="showDetails({{ $item->id }})" class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
+                            
+                            <input type="checkbox" class="select-box hidden absolute top-2 left-2 w-5 h-5 z-40">
+                            
+                            <!-- Image -->
+                            <div class="h-40 flex items-center justify-center p-2">
+                                <img src="{{ asset('storage/' . $item->image) }}" class="max-h-full max-w-full object-contain">
+                            </div>
+                            
+                            <!-- Content -->
+                            <div class="flex flex-col bg-gray-100 text-center p-2">
+                                <p class="text-base font-semibold">{{ $item->name }}</p>
+                            </div>
+                            
                         </div>
+                        @endforeach
+                        
+                    @endif
 
-                        <!-- Content -->
-                        <div class="flex flex-col bg-gray-100 text-center p-2">
-                            <p class="text-base font-semibold">Sepatu</p>
-                        </div>
-
-                    </div>
-
-                    <div id="overlayProductsDetails" class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
-
-                        <input type="checkbox" class="select-box hidden absolute top-2 left-2 w-5 h-5 z-40">
-
-                        <!-- Image -->
-                        <div class="h-40 flex items-center justify-center p-2">
-                            <img src="{{ asset('img/celana.png') }}" class="max-h-full max-w-full object-contain">
-                        </div>
-
-                        <!-- Content -->
-                        <div class="flex flex-col bg-gray-100 text-center p-2">
-                            <p class="text-base font-semibold">Celana</p>
-                        </div>
-
-                    </div>
-
-                    <div id="overlayProductsDetails" class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
-
-                        <input type="checkbox" class="select-box hidden absolute top-2 left-2 w-5 h-5 z-40">
-
-                        <!-- Image -->
-                        <div class="h-40 flex items-center justify-center p-2">
-                            <img src="{{ asset('img/kaos.png') }}" class="max-h-full max-w-full object-contain">
-                        </div>
-
-                        <!-- Content -->
-                        <div class="flex flex-col bg-gray-100 text-center p-2">
-                            <p class="text-base font-semibold">Kaos</p>
-                        </div>
-
-                    </div>
-
-                    <div id="overlayProductsDetails" class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
-
-                        <input type="checkbox" class="select-box hidden absolute top-2 left-2 w-5 h-5 z-40">
-
-                        <!-- Image -->
-                        <div class="h-40 flex items-center justify-center p-2">
-                            <img src="{{ asset('img/topi.png') }}" class="max-h-full max-w-full object-contain">
-                        </div>
-
-                        <!-- Content -->
-                        <div class="flex flex-col bg-gray-100 text-center p-2">
-                            <p class="text-base font-semibold">Aksesoris</p>
-                        </div>
-
-                    </div>
 
                 </div>
 
             </div>
-            {{-- products --}}
+            {{-- Card products --}}
 
             {{-- overlay products --}}
-            <div id="overlayProduct" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50">
+            <div class="{{ $showDetailOverlay ? '' : 'hidden' }} fixed inset-0 bg-black/50 backdrop-blur-sm z-50">
                 <div class="flex justify-center items-center w-full h-full">
                     <div class="flex flex-col justify-center items-center gap-6 bg-white rounded-md p-6 shadow-md w-full max-w-sm text-center">
                         <p class="capitalize font-bold text-lg">details kategori</p>
-                        <div class="flex flex-col justify-center items-center gap-4">
-                            <div class="flex justify-center items-center w-40 h-40 border border-dashed rounded-md">
-                                <img src="{{ asset('img/1.png') }}" alt="" class="max-h-full max-w-full object-contain">
-                            </div>
+                        @if ($selectedCategory)
+                            <div class="flex flex-col justify-center items-center gap-4">
+                                <div class="flex justify-center items-center w-40 h-40 border border-dashed rounded-md">
+                                    <img src="{{ asset('storage/' . $selectedCategory->image) }}" alt="" class="max-h-full max-w-full object-contain">
+                                </div>
 
-                            <div class="flex flex-row gap-6 justify-start items-center">
-                                <div class="flex flex-col justify-start items-start gap-1">
-                                    <label for="name" class="text-md capitalize">Nama kategori :</label>
-                                    <p class="text-md capitalize">Sepatu</p>
-                                </div>
-                                <div class="flex flex-col justify-start items-start gap-1">
-                                    <label for="name" class="text-md capitalize">Jumlah Produk :</label>
-                                    <p class="text-md capitalize">10</p>
+                                <div class="flex flex-row gap-6 justify-start items-center">
+                                    <div class="flex flex-col justify-start items-start gap-1">
+                                        <label for="name" class="text-md capitalize">Nama kategori :</label>
+                                        <p class="text-md capitalize">{{ $selectedCategory->name }}</p>
+                                    </div>
+                                    <div class="flex flex-col justify-start items-start gap-1">
+                                        <label for="name" class="text-md capitalize">Jumlah Produk :</label>
+                                        <p class="text-md capitalize">10</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <button id="cancel-detailProduct" class="flex capitalize bg-red-600 hover:bg-red-700 text-white rounded-md px-4 py-2">close</button>
+                        @endif
+                        <button wire:click="closeDetails" class="flex capitalize bg-red-600 hover:bg-red-700 text-white rounded-md px-4 py-2">close</button>
                     </div>
                 </div>
             </div>
@@ -261,17 +254,29 @@ new class extends Component
     // overlay delete
 
     // overlay detail product
-    const overlayProduct = document.getElementById('overlayProduct');
-    const overlaycloseProduct = document.getElementById('cancel-detailProduct');
+    // const overlayProduct = document.getElementById('overlayProduct');
+    // const overlaycloseProduct = document.getElementById('cancel-detailProduct');
 
-    // show teh over when the "open overlay products" button is clicked
-    document.getElementById('overlayProductsDetails').addEventListener('click', () => {
-        overlayProduct.style.display = 'flex';
-    })
+    // // show teh over when the "open overlay products" button is clicked
+    // document.getElementById('overlayProductsDetails').addEventListener('click', () => {
+    //     overlayProduct.style.display = 'flex';
+    // })
 
-    // hiden teh overlay when the "cancel" button is clicked
-    overlaycloseProduct.addEventListener('click', () => {
-        overlayProduct.style.display = 'none';
-    })
+    // // hiden teh overlay when the "cancel" button is clicked
+    // overlaycloseProduct.addEventListener('click', () => {
+    //     overlayProduct.style.display = 'none';
+    // })
     // overlay detail product
+
+
+    // image preview
+    function previewImage(event) {
+        const file = event.target.files[0];
+        const preview = document.getElementById('preview');
+
+        preview.src = URL.createObjectURL(file);
+        preview.classList.remove('hidden');
+    }
+    // image preview
+
 </script>
