@@ -23,15 +23,6 @@ new class extends Component
                         </button>
                     </div>
 
-                    <button id="btnCalender" class="flex h-full w-full items-center justify-center px-2 py-1 border border-gray-300 hover:bg-gray-300 rounded-md cursor-pointer">
-                        <i class="fa-solid fa-calendar text-[#183153]"></i>
-                    </button>
-
-                    {{-- overlay calender --}}
-                    <div id="overlay-calender" class="hidden absolute top-32 left-130 bg-white p-4 rounded-md shadow-lg z-20 transition duration-200">
-                        <input type="date" class="border border-gray-300 rounded-md p-2">
-                    </div>
-                    {{-- overlay calender --}}
                 </div>
 
                 {{-- download transactions --}}
@@ -61,7 +52,7 @@ new class extends Component
 
                     <!-- BODY -->
                     <tbody class="text-gray-600 text-sm">
-                    @for ($i = 1; $i < 20; $i++) 
+                    @for ($i = 1; $i <= 4; $i++) 
                     <tr class="border-b hover:bg-gray-50 transition">
                         <td class="px-4 py-3 text-center">{{$i}}</td>
                         <td class="px-4 py-3 font-medium text-gray-900">TXN001</td>
@@ -99,7 +90,7 @@ new class extends Component
 
                     <!-- contoh row tambahan -->
                     <tr class="border-b hover:bg-gray-50 transition bg-gray-50/50">
-                        <td class="px-4 py-3 text-center">20</td>
+                        <td class="px-4 py-3 text-center">5</td>
                         <td class="px-4 py-3 font-medium text-gray-900">TXN002</td>
                         <td class="px-4 py-3">John Doe</td>
                         <td class="px-4 py-3">john.doe@example.com</td>
@@ -141,31 +132,5 @@ new class extends Component
 </div>
 
 <script>
-    // script untuk toggle overlay calender
-    const btnCalender = document.getElementById('btnCalender');
-    const overlayCalender = document.getElementById('overlay-calender');
-
-    // open overlay calender when click btn calender
-    btnCalender.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (overlayCalender.style.display === 'flex') {
-            overlayCalender.style.display = 'none';
-            btnCalender.classList.remove('bg-gray-300');
-        } else {
-            overlayCalender.style.display = 'flex';
-            btnCalender.classList.add('bg-gray-300');
-        }
-    })
-
-    overlayCalender.addEventListener('click', (e) => {
-        e.stopPropagation();
-    })
-
-    // close overlay calender when click outside
-    document.addEventListener('click', () => {
-        overlayCalender.style.display = 'none';
-        btnCalender.classList.remove('bg-gray-300');
-    })
-    // script untuk toggle overlay calender
 
 </script>
