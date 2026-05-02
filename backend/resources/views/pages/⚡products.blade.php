@@ -1,11 +1,22 @@
 <?php
 
 use Livewire\Component;
+use App\Models\CategoriesProducts;
 
 new class extends Component
 {
-    
-};
+    public $categories;
+
+    public function loadCategories()
+    {
+        $this->categories = CategoriesProducts::all();
+    }
+
+    public function mount()
+    {
+        $this->loadCategories();
+    }
+}
 ?>
 
 <div class="flex pt-14 justify-center items-center w-full h-screen rounded-md">
@@ -22,25 +33,12 @@ new class extends Component
                             </svg>
                         </button>
                     </div>
-                    <el-dropdown class="inline-block">
-                        <button class="inline-flex w-40 h-8 justify-between items-center px-2 gap-x-1 border border-gray-300 rounded-md bg-white/10 text-sm font-semibold text-gray-300 inset-ring-1 inset-ring-white/5 hover:bg-white/20 cursor-pointer">
-                            <p class="text-black capitalize text-sm opacity-80">Pilih Kategori</p>
-                            <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="-mr-1 size-5 text-gray-400">
-                            <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
-                            </svg>
-                        </button>
-
-                        <el-menu anchor="bottom end" popover class="w-56 origin-top-right rounded-md bg-gray-800 outline-1 -outline-offset-1 outline-white/10 transition transition-discrete z-100 [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
-                            <div class="py-1">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:text-white focus:outline-hidden">Account settings</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:text-white focus:outline-hidden">Support</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:text-white focus:outline-hidden">License</a>
-                            <form action="#" method="POST">
-                                <button type="submit" class="block w-full px-4 py-2 text-left text-sm text-gray-300 focus:bg-white/5 focus:text-white focus:outline-hidden">Sign out</button>
-                            </form>
-                            </div>
-                        </el-menu>
-                    </el-dropdown>
+                    <select name="category" class="border border-gray-300 rounded-md px-2 py-1 outline-none">
+                        <option disabled selected>Pilih Kategori</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 
                 {{-- buttons --}}
@@ -63,7 +61,7 @@ new class extends Component
 
                 {{-- overlay add product --}}
                 <div id="overlayAdd" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50">
-                    <button id="close-overlayAdd" class="absolute w-8 h-8 lg:top-40 lg:right-98 md:top-40 md:right-98 top-6 right-6 text-black hover:text-gray-300 cursor-pointer">
+                    <button id="close-overlayAdd" class="absolute w-8 h-8 lg:top-35 lg:right-98 md:top-35 md:right-98 top-6 right-6 text-black hover:text-gray-300 cursor-pointer">
                         @svg('jam-close-circle-f')
                     </button>
                     <div class="flex items-center justify-center w-full min-h-screen p-4">
@@ -72,21 +70,26 @@ new class extends Component
                                 Add Product
                             </h2>
 
-                            <form class="flex flex-col gap-4" method="POST" enctype="multipart/form-data">
-                                
+                            <form action="{{ route('products-controller.store') }}" class="flex flex-col gap-4" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <!-- container utama -->
                                 <div class="flex flex-col md:flex-row gap-4">
 
                                     <!-- kiri -->
                                     <div class="flex flex-col gap-4 w-full md:w-1/2">
-                                        <select name="category" class="border border-gray-300 rounded-md p-2 outline-none">
-                                            <option disabled selected>Select Category</option>
-                                            <option value="1">Category 1</option>
+                                        
+                                        <select name="id_category" class="border border-gray-300 rounded-md p-2 outline-none">
+                                            <option value="" disabled selected>Select Category</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
                                         </select>
 
-                                        <input type="text" name="product_name" placeholder="Product Name" class="border border-gray-300 rounded-md p-2 outline-none">
+                                        <input type="text" name="name" placeholder="Product Name" class="border border-gray-300 rounded-md p-2 outline-none">
 
-                                        <input type="text" name="price" placeholder="Price" class="border border-gray-300 rounded-md p-2 outline-none">
+                                        <input type="number" name="price" placeholder="Price" class="border border-gray-300 rounded-md p-2 outline-none">
+
+                                        <input type="number" name="stock" placeholder="Stock" class="border border-gray-300 rounded-md p-2 outline-none">
 
                                         <textarea name="description" rows="4" placeholder="Description" class="border border-gray-300 rounded-md p-2 outline-none"></textarea>
                                     </div>
