@@ -2,19 +2,44 @@
 
 use Livewire\Component;
 use App\Models\CategoriesProducts;
+use App\Models\Products;
 
 new class extends Component
 {
     public $categories;
+
+    public $products;
+
+    public $selectedProduct = null;
+
+    public $showOverlayProduct = false;
 
     public function loadCategories()
     {
         $this->categories = CategoriesProducts::all();
     }
 
+    public function loadProducts()
+    {
+        $this->products = Products::all();
+    }
+
     public function mount()
     {
         $this->loadCategories();
+        $this->loadProducts();
+    }
+
+    public function openOverlayProducts($id)
+    {
+        $this->selectedProduct = Products::find($id);
+        $this->showOverlayProduct = true;
+    }
+
+    public function closeOverlayProducts()
+    {
+        $this->showOverlayProduct = false;
+        $this->selectedProduct = null;
     }
 }
 ?>
@@ -149,75 +174,28 @@ new class extends Component
     
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
                     
-                    @for ($i = 1; $i <= 4; $i++)
-                    <div id="overlayProductsDetails" class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
+                    @if ($products->isEmpty())
+                        <p class="text-center text-gray-500">No products found.</p>
+                    @else
+                        @foreach ($products as $item)
+                            <div wire:click="openOverlayProducts({{ $item->id }})" class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
 
-                        <input type="checkbox" class="select-box hidden absolute top-2 left-2 w-5 h-5 z-40">
+                                <input type="checkbox" class="select-box hidden absolute top-2 left-2 w-5 h-5 z-40">
 
-                        <!-- Image -->
-                        <div class="h-40 flex items-center justify-center p-2">
-                            <img src="{{ asset('img/1.png') }}" class="max-h-full max-w-full object-contain">
-                        </div>
+                                <!-- Image -->
+                                <div class="h-40 flex items-center justify-center p-2">
+                                    <img src="{{ asset('storage/' . $item->image) }}" class="max-h-full max-w-full object-contain">
+                                </div>
 
-                        <!-- Content -->
-                        <div class="flex flex-col bg-gray-100 text-center p-2">
-                            <p class="text-sm font-semibold">Nike Air Force</p>
-                            <p class="text-gray-500 text-xs">Rp 1.200.000</p>
-                        </div>
+                                <!-- Content -->
+                                <div class="flex flex-col bg-gray-100 text-center p-2">
+                                    <p class="text-sm font-semibold">{{ $item->name }}</p>
+                                    <p class="text-gray-500 text-xs">Rp {{ number_format($item->price, 0, ',', '.') }}</p>
+                                </div>
 
-                    </div>
-
-                    <div id="overlayProductsDetails" class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden has-[input:checked]:border-red-500">
-
-                        <input type="checkbox" class="select-box hidden absolute top-2 left-2 w-5 h-5 z-40">
-
-                        <!-- Image -->
-                        <div class="h-40 flex items-center justify-center p-2">
-                            <img src="{{ asset('img/2.png') }}" alt="Product Image"class="max-h-full max-w-full object-contain">
-                        </div>
-
-                        <!-- Content -->
-                        <div class="flex flex-col bg-gray-100 text-center p-2">
-                            <p class="text-sm font-semibold">Nike Air Force</p>
-                            <p class="text-gray-500 text-xs">Rp 1.200.000</p>
-                        </div>
-
-                    </div>
-
-                    <div id="overlayProductsDetails" class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden has-[input:checked]:border-red-500">
-
-                        <input type="checkbox" class="select-box hidden absolute top-2 left-2 w-5 h-5 z-40">
-
-                        <!-- Image -->
-                        <div class="h-40 flex items-center justify-center p-2">
-                            <img src="{{ asset('img/3.png') }}" alt="Product Image"class="max-h-full max-w-full object-contain">
-                        </div>
-
-                        <!-- Content -->
-                        <div class="flex flex-col bg-gray-100 text-center p-2">
-                            <p class="text-sm font-semibold">Nike Air Force</p>
-                            <p class="text-gray-500 text-xs">Rp 1.200.000</p>
-                        </div>
-
-                    </div>
-
-                    <div id="overlayProductsDetails" class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden has-[input:checked]:border-red-500">
-
-                        <input type="checkbox" class="select-box hidden absolute top-2 left-2 w-5 h-5 z-40">
-
-                        <!-- Image -->
-                        <div class="h-40 flex items-center justify-center p-2">
-                            <img src="{{ asset('img/4.png') }}" alt="Product Image"class="max-h-full max-w-full object-contain">
-                        </div>
-
-                        <!-- Content -->
-                        <div class="flex flex-col bg-gray-100 text-center p-2">
-                            <p class="text-sm font-semibold">Nike Air Force</p>
-                            <p class="text-gray-500 text-xs">Rp 1.200.000</p>
-                        </div>
-
-                    </div>
-                    @endfor
+                            </div>  
+                        @endforeach
+                    @endif
 
                 </div>
 
@@ -226,33 +204,35 @@ new class extends Component
 
 
             {{-- overlay products --}}
-            <div id="overlayProduct" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50">
+            <div class="{{ $showOverlayProduct ? '' : 'hidden' }} fixed inset-0 bg-black/50 backdrop-blur-sm z-50">
                 <div class="flex justify-center items-center w-full h-full">
                     <div class="flex flex-col justify-center items-center gap-6 bg-white rounded-md p-6 shadow-md w-full max-w-sm text-center">
                         <p class="capitalize font-bold text-lg">details products</p>
                         <div class="flex flex-col justify-center items-center gap-4">
-                            <div class="flex justify-center items-center w-40 h-40 border border-dashed rounded-md">
-                                <img src="{{ asset('img/1.png') }}" alt="" class="max-h-full max-w-full object-contain">
-                            </div>
+                            @if ($selectedProduct)
+                                <div class="flex justify-center items-center w-40 h-40 border border-dashed rounded-md">
+                                    <img src="{{ asset('storage/' . $selectedProduct->image) }}" alt="" class="max-h-full max-w-full object-contain">
+                                </div>
 
-                            <div class="flex flex-col gap-1 justify-start w-full items-start">
-                                <div class="flex flex-row justify-start items-start gap-1">
-                                    <label for="name" class="text-md capitalize">Nama Product :</label>
-                                    <p class="text-md capitalize">Adidas max 1</p>
+                                <div class="flex flex-col gap-1 justify-start w-full items-start">
+                                    <div class="flex flex-row justify-start items-start gap-1">
+                                        <label for="name" class="text-md capitalize">Nama Product :</label>
+                                        <p class="text-md capitalize">{{ $selectedProduct->name }}</p>
+                                    </div>
+                                    <div class="flex flex-row justify-start items-start gap-1">
+                                        <label for="name" class="text-md capitalize">Stock Product :</label>
+                                        <p class="text-md capitalize">{{ $selectedProduct->stock }}</p>
+                                    </div>
+                                    <div class="flex flex-row justify-start items-start gap-1">
+                                        <label for="name" class="text-md capitalize">Harga :</label>
+                                        <p class="text-md capitalize">Rp {{ number_format($selectedProduct->price, 0, ',', '.') }}</p>
+                                    </div>
                                 </div>
-                                <div class="flex flex-row justify-start items-start gap-1">
-                                    <label for="name" class="text-md capitalize">Stock Product :</label>
-                                    <p class="text-md capitalize">10</p>
-                                </div>
-                                <div class="flex flex-row justify-start items-start gap-1">
-                                    <label for="name" class="text-md capitalize">Harga :</label>
-                                    <p class="text-md capitalize">Rp 1.200.000</p>
-                                </div>
-                            </div>
+                            @endif
                         </div>
                         <div class="flex justify-center items-center gap-4">
                             <button id="update-detailProduct" class="flex capitalize bg-green-600 hover:bg-green-700 text-white rounded-md px-4 py-2 cursor-pointer">Update</button>
-                            <button id="cancel-detailProduct" class="flex capitalize bg-red-600 hover:bg-red-700 text-white rounded-md px-4 py-2 cursor-pointer">close</button>
+                            <button wire:click="closeOverlayProducts" class="flex capitalize bg-red-600 hover:bg-red-700 text-white rounded-md px-4 py-2 cursor-pointer">close</button>
                         </div>
                     </div>
                 </div>
@@ -313,18 +293,18 @@ new class extends Component
     // overlay delete
 
     // overlay detail product
-    const overlayProduct = document.getElementById('overlayProduct');
-    const overlaycloseProduct = document.getElementById('cancel-detailProduct');
+    // const overlayProduct = document.getElementById('overlayProduct');
+    // const overlaycloseProduct = document.getElementById('cancel-detailProduct');
 
-    // show teh over when the "open overlay products" button is clicked
-    document.getElementById('overlayProductsDetails').addEventListener('click', () => {
-        overlayProduct.style.display = 'flex';
-    })
+    // // show teh over when the "open overlay products" button is clicked
+    // document.getElementById('overlayProductsDetails').addEventListener('click', () => {
+    //     overlayProduct.style.display = 'flex';
+    // })
 
-    // hiden teh overlay when the "cancel" button is clicked
-    overlaycloseProduct.addEventListener('click', () => {
-        overlayProduct.style.display = 'none';
-    })
+    // // hiden teh overlay when the "cancel" button is clicked
+    // overlaycloseProduct.addEventListener('click', () => {
+    //     overlayProduct.style.display = 'none';
+    // })
     // overlay detail product
 
 </script>
