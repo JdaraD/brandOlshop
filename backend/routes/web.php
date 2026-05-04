@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriesProductsController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProfileWebsiteController;
 use Illuminate\Support\Facades\Route;
 
 Route::livewire('/', 'pages::home')->name('home');
@@ -15,3 +16,4 @@ Route::livewire('/profile-website', 'pages::profile-website')->name('profile-web
 
 Route::resource('categories-products', CategoriesProductsController::class);
 Route::resource('products-controller', ProductsController::class);
+Route::resource('profile-web', ProfileWebsiteController::class);

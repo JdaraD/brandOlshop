@@ -18,53 +18,54 @@ new class extends Component
                         <p class="text-lg font-bold">Profile Website</p>
                         <p class="text-sm opacity-80">Manage your profile website</p>
                     </div>
-                    <div class="flex flex-col gap-4 w-full h-auto p-2 bg-gray-100 rounded-md">
+                    <form action="{{ route('profile-web.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-4 w-full h-auto p-2 bg-gray-100 rounded-md">
+                        @csrf
                         <div class="flex flex-row gap-4 w-full h-auto">
                             <div class="flex flex-col gap-2 w-[50%]">
                                 <label for="logo-brand">Logo Brand :</label>
-                                <input type="file" id="logo-brand" class="border border-gray-300 bg-white rounded-md p-1">
+                                <input type="file" name="logo" id="logo-brand" class="border border-gray-300 bg-white rounded-md p-1">
                                 <label for="name-brand">Name Brand :</label>
-                                <input type="text" id="name-brand" class="border border-gray-300 bg-white rounded-md p-1">
+                                <input type="text" name="name" id="name-brand" class="border border-gray-300 bg-white rounded-md p-1">
                                 <label for="gmail-brand">Gmail Brand :</label>
-                                <input type="email" id="gmail-brand" class="border border-gray-300 bg-white rounded-md p-1" placeholder="Enter your gmail brand (gmail@example.com)">
+                                <input type="email" name="email" id="gmail-brand" class="border border-gray-300 bg-white rounded-md p-1" placeholder="Enter your gmail brand (gmail@example.com)">
                                 <p>Sosial Media Brand :</p>
                                     <div class="flex flex-wrap gap-2">
                                         <div class="flex flex-col gap-2">
                                             <label for="facebook">facebook</label>
-                                            <input type="text" id="facebook" class="border border-gray-300 bg-white rounded-md p-1" placeholder="Enter your link facebook brand">
+                                            <input type="text" name="sm_facebook" id="facebook" class="border border-gray-300 bg-white rounded-md p-1" placeholder="Enter your link facebook brand">
                                         </div>
                                         <div class="flex flex-col gap-2">
                                             <label for="instagram">Instagram</label>
-                                            <input type="text" id="instagram" class="border border-gray-300 bg-white rounded-md p-1" placeholder="Enter your link instagram brand">
+                                            <input type="text" name="sm_instagram" id="instagram" class="border border-gray-300 bg-white rounded-md p-1" placeholder="Enter your link instagram brand">
                                         </div>
                                         <div class="flex flex-col gap-2">
                                             <label for="shoppe">Shoppe</label>
-                                            <input type="text" id="shoppe" class="border border-gray-300 bg-white rounded-md p-1" placeholder="Enter your link shoppe brand">
+                                            <input type="text" name="to_shoppee" id="shoppe" class="border border-gray-300 bg-white rounded-md p-1" placeholder="Enter your link shoppe brand">
                                         </div>
                                         <div class="flex flex-col gap-2">
                                             <label for="tiktok">TikTok</label>
-                                            <input type="text" id="tiktok" class="border border-gray-300 bg-white rounded-md p-1" placeholder="Enter your link tiktok brand">
+                                            <input type="text" name="to_tiktok" id="tiktok" class="border border-gray-300 bg-white rounded-md p-1" placeholder="Enter your link tiktok brand">
                                         </div>
                                         <div class="flex flex-col gap-2">
                                             <label for="tokopedia">Tokopedia</label>
-                                            <input type="text" id="tokopedia" class="border border-gray-300 bg-white rounded-md p-1" placeholder="Enter your link tokopedia brand">
+                                            <input type="text" name="to_tokopedia" id="tokopedia" class="border border-gray-300 bg-white rounded-md p-1" placeholder="Enter your link tokopedia brand">
                                         </div>
                                     </div>
                             </div>
                             <div class="flex flex-col gap-2 w-[50%]">
                                 <label for="name-brand">Profile Brand :</label>
-                                <textarea name="profile-brand" id="profile-brand" cols="30" rows="4" class="border border-gray-300 bg-white rounded-md p-1"></textarea>
+                                <textarea name="profile_description" id="profile-brand" cols="30" rows="4" class="border border-gray-300 bg-white rounded-md p-1"></textarea>
                                 <label for="address-brand">Address Brand :</label>
-                                <textarea name="address-brand" id="address-brand" cols="30" rows="4" class="border border-gray-300 bg-white rounded-md p-1"></textarea>
+                                <textarea name="address" id="address-brand" cols="30" rows="4" class="border border-gray-300 bg-white rounded-md p-1"></textarea>
                                 <label for=""></label>
                             </div>
                         </div>
     
                         <div class="flex flex-row gap-2 w-full h-auto justify-end">
-                            <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 cursor-pointer">Save</button>
+                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 cursor-pointer">Save</button>
                             <button class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 cursor-pointer">Cancel</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
     
                 <div class="flex flex-col gap-2 w-full h-auto">
