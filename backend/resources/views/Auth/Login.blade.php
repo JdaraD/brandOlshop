@@ -19,13 +19,14 @@
                 </div>
             @endif
 
-            <form wire:submit="login" class="space-y-5">
+            <form method="POST" action="{{ route('loginUser.store') }}" class="space-y-5">
+                @csrf
 
                 <div>
                     <label class="text-sm">Email</label>
                     <input 
                         type="email" 
-                        wire:model="email"
+                        name="email"
                         class="w-full mt-1 px-4 py-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-white/60"
                         placeholder="Masukkan email">
                 </div>
@@ -34,7 +35,7 @@
                     <label class="text-sm">Password</label>
                     <input 
                         type="password" 
-                        wire:model="password"
+                        name="password"
                         class="w-full mt-1 px-4 py-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-white/60"
                         placeholder="Masukkan password">
                 </div>
