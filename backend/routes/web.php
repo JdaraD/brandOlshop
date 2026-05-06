@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileWebsiteController;
 use Illuminate\Support\Facades\Route;
 
+Route::view('/login', 'Auth.login')->name('login');
 Route::livewire('/', 'pages::home')->name('home');
 Route::livewire('/products', 'pages::products')->name('products');
 Route::livewire('/categories', 'pages::categories')->name('categories');

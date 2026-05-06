@@ -29,7 +29,7 @@ class ProfileWebsiteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
             'name' => 'required|string|max:100',
             'email' => 'required|email',
             'sm_facebook' => 'nullable|string',

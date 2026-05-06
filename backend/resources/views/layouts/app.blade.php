@@ -7,7 +7,6 @@
         <title>{{ $title ?? config('app.name') }}</title>
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @tailwindplus/elements
         <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
@@ -15,16 +14,21 @@
     </head>
     <body class="relative bg-gray-100 font['sans','system-ui','poppins'] select-none">
         @if (!request()->routeIs('login') && !request()->routeIs('register'))
-            <div class="flex z-10 absolute w-full top-0 left-0">
-                @livewire('header')
-            </div>
-            <div class="flex absolute w-[16%] top-0 left-0">
-                @livewire('sidebar')
-            </div>
-            <div class="flex w-[84%] float-right">
-                {{ $slot }}
-            </div>
-        @endif
+        <div class="flex z-10 absolute w-full top-0 left-0">
+            @livewire('header')
+        </div>
+
+        <div class="flex absolute w-[16%] top-0 left-0">
+            @livewire('sidebar')
+        </div>
+
+        <div class="flex w-[84%] float-right">
+            {{ $slot }}
+        </div>
+    @else
+        {{-- tampilkan login --}}
+        @yield('content')
+    @endif
 
         @livewireScripts
     </body>
