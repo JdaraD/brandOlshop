@@ -48,7 +48,7 @@
             </form>
 
             <p class="text-center text-sm mt-4 text-white/70">
-                Belum punya akun? <span class="underline cursor-pointer">Daftar</span>
+                Belum punya akun? <a href="{{ route('register') }}" class="underline cursor-pointer">Daftar</a>
             </p>
 
         </div>
