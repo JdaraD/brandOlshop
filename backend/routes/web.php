@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoriesProductsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileWebsiteController;
+use App\Http\Controllers\registerController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/login', 'Auth.login')->name('login');
@@ -20,3 +21,4 @@ Route::livewire('/profile-website', 'pages::profile-website')->name('profile-web
 Route::resource('categories-products', CategoriesProductsController::class);
 Route::resource('products-controller', ProductsController::class);
 Route::resource('profile-web', ProfileWebsiteController::class);
+Route::resource('registerasi', registerController::class);

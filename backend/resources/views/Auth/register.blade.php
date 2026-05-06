@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
+<div class="min-h-screen flex items-center justify-center bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500">
 
     <div class="w-full max-w-md bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-8 text-white">
 
@@ -18,7 +18,7 @@
             </div>
         @endif
 
-        <form method="POST" action="" class="space-y-5">
+        <form method="POST" action="{{ route('registerasi.store') }}" class="space-y-5">
             @csrf
 
             <div>
