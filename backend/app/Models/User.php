@@ -53,4 +53,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Roles::class, 'role_id');
     }
+
+    // relasi dengan profile user
+    public function profileUser()
+    {
+        return $this->hasMany(profileUser::class, 'user_id');
+    }
 }
