@@ -78,20 +78,19 @@ new class extends Component
                             <div class="flex flex-col gap-2 w-[50%]">
                                 <p class="text-sm font-bold">Website Colors</p>
                                 <div class="flex flex-row gap-2">
-                                    <div class="flex flex-col justify-center gap-2 items-center">
+                                    <div class="flex flex-col justify-center border-2 border-white p-2 rounded-md gap-2 items-center">
                                         <label for="header" class="text-sm">Header</label>
                                         <input type="color" id="header" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0" Value="#ffffff">
-        
                                     </div>
-                                    <div class="flex flex-col justify-center gap-2 items-center">
+                                    <div class="flex flex-col justify-center border-2 border-white p-2 rounded-md gap-2 items-center">
                                         <label for="content1" class="text-sm">Content1</label>
                                         <input type="color" id="content1" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0" Value="#ffffff">
                                     </div>
-                                    <div class="flex flex-col justify-center gap-2 items-center">
+                                    <div class="flex flex-col justify-center border-2 border-white p-2 rounded-md gap-2 items-center">
                                         <label for="content2" class="text-sm">Content2</label>
                                         <input type="color" id="content2" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0" Value="#ffffff">
                                     </div>
-                                    <div class="flex flex-col justify-center gap-2 items-center">
+                                    <div class="flex flex-col justify-center border-2 border-white p-2 rounded-md gap-2 items-center">
                                         <label for="footer" class="text-sm">Footer</label>
                                         <input type="color" id="footer" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0" Value="#ffffff">
                                     </div>
@@ -100,21 +99,29 @@ new class extends Component
         
                             <div class="flex flex-col gap-2 w-[50%]">
                                 <p class="text-sm font-bold">Admin Colors</p>
-                                <div class="flex flex-row gap-2">
-                                    <div class="flex flex-col justify-center gap-2 items-center">
+                                <form action="" method="POST" enctype="multipart/form-data" class="flex flex-row gap-2">
+                                    @csrf
+                                    <div class="flex flex-col justify-center gap-2 border-2 border-white p-2 rounded-md items-center">
                                         <label for="header" class="text-sm">Header</label>
-                                        <input type="color" id="header" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0" Value="#ffffff">
-        
+                                        <input type="color" id="header" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0">
                                     </div>
-                                     <div class="flex flex-col justify-center gap-2 items-center">
+                                    <div class="flex flex-col justify-center gap-2 border-2 border-white p-2 rounded-md items-center">
+                                        <label for="Side-Bar" class="text-sm">Side Bar</label>
+                                        <input type="color" id="Side-Bar" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0">
+                                    </div>
+                                    <div class="flex flex-col justify-center gap-2 border-2 border-white p-2 rounded-md items-center">
+                                        <label for="color-side-bar-judul" class="text-sm">Color side bar judul</label>
+                                        <input type="color" id="color-side-bar-judul" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0">
+                                    </div>
+                                    <div class="flex flex-col justify-center gap-2 border-2 border-white p-2 rounded-md items-center">
+                                        <label for="Button-Active-Side-Bar" class="text-sm">Button Active Side Bar</label>
+                                        <input type="color" id="Button-Active-Side-Bar" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0">
+                                    </div>
+                                    <div class="flex flex-col justify-center gap-2 border-2 border-white p-2 rounded-md items-center">
                                         <label for="content" class="text-sm">Content</label>
-                                        <input type="color" id="content" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0" Value="#ffffff">
+                                        <input type="color" id="content" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0">
                                     </div>
-                                    <div class="flex flex-col justify-center gap-2 items-center">
-                                        <label for="footer" class="text-sm">Footer</label>
-                                        <input type="color" id="footer" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0" Value="#ffffff">
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
     
