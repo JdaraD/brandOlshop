@@ -75,7 +75,8 @@ new class extends Component
                     </div>
                     <div class="flex flex-col gap-2 w-full h-auto p-2 bg-gray-100 rounded-md">
                         <div class="flex flex-row gap-2 w-full h-auto">
-                            <div class="flex flex-col gap-2 w-[50%]">
+                            <form action="" method="POST" enctype="multipart/form-data" class="flex flex-col gap-4 w-[50%]">
+                                @csrf
                                 <p class="text-sm font-bold">Website Colors</p>
                                 <div class="flex flex-row gap-2">
                                     <div class="flex flex-col justify-center border-2 border-white p-2 rounded-md gap-2 items-center">
@@ -95,39 +96,40 @@ new class extends Component
                                         <input type="color" id="footer" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0" Value="#ffffff">
                                     </div>
                                 </div>
-                            </div>
+                                <div class="">
+                                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 cursor-pointer">Save Colors website</button>
+                                </div>
+                            </form>
         
-                            <div class="flex flex-col gap-2 w-[50%]">
+                            <form action="{{ route('colors-admin.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-4 w-[50%]">
+                                @csrf
                                 <p class="text-sm font-bold">Admin Colors</p>
-                                <form action="" method="POST" enctype="multipart/form-data" class="flex flex-row gap-2">
-                                    @csrf
+                                <div class="flex flex-row gap-2">
                                     <div class="flex flex-col justify-center gap-2 border-2 border-white p-2 rounded-md items-center">
                                         <label for="header" class="text-sm">Header</label>
-                                        <input type="color" id="header" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0">
+                                        <input type="color" id="header" name="header" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0">
                                     </div>
                                     <div class="flex flex-col justify-center gap-2 border-2 border-white p-2 rounded-md items-center">
-                                        <label for="Side-Bar" class="text-sm">Side Bar</label>
-                                        <input type="color" id="Side-Bar" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0">
+                                        <label for="sidebar" class="text-sm">Sidebar</label>
+                                        <input type="color" id="sidebar" name="sidebar" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0">
                                     </div>
                                     <div class="flex flex-col justify-center gap-2 border-2 border-white p-2 rounded-md items-center">
-                                        <label for="color-side-bar-judul" class="text-sm">Color side bar judul</label>
-                                        <input type="color" id="color-side-bar-judul" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0">
+                                        <label for="color_sidebar_judul" class="text-sm">Color sidebar judul</label>
+                                        <input type="color" id="color_sidebar_judul" name="color_sidebar_judul" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0">
                                     </div>
                                     <div class="flex flex-col justify-center gap-2 border-2 border-white p-2 rounded-md items-center">
-                                        <label for="Button-Active-Side-Bar" class="text-sm">Button Active Side Bar</label>
-                                        <input type="color" id="Button-Active-Side-Bar" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0">
+                                        <label for="Button_Active_Sidebar" class="text-sm">Button Active Sidebar</label>
+                                        <input type="color" id="Button_Active_Sidebar" name="Button_Active_Sidebar" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0">
                                     </div>
                                     <div class="flex flex-col justify-center gap-2 border-2 border-white p-2 rounded-md items-center">
                                         <label for="content" class="text-sm">Content</label>
-                                        <input type="color" id="content" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0">
+                                        <input type="color" id="content" name="content" class="flex w-10 h-10 border border-black rounded-full overflow-hidden cursor-pointer p-0">
                                     </div>
-                                </form>
-                            </div>
-                        </div>
-    
-                        <div class="flex flex-row w-full gap-2 h-auto justify-end">
-                            <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 cursor-pointer">Save</button>
-                            <button class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 cursor-pointer">Cancel</button>
+                                </div>
+                                <div class="">
+                                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 cursor-pointer">Save Colors Admin</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
     

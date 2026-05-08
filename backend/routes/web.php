@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriesProductsController;
+use App\Http\Controllers\colorsAdmin;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileWebsiteController;
@@ -38,4 +39,5 @@ Route::resource('products-controller', ProductsController::class);
 Route::resource('profile-web', ProfileWebsiteController::class);
 Route::resource('registerasi', registerController::class);
 Route::resource('loginUser', loginController::class);
+Route::resource('colors-admin', colorsAdmin::class);
 // Route::post('/login', [loginController::class, 'store'])->name('loginUser.store');
