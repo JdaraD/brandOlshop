@@ -79,10 +79,10 @@ new class extends Component
                         </td>
                         <td class="px-3 py-2">
                             <button id="btnView" class="px-2 py-1 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition cursor-pointer">
-                                View
+                                <i class="fa-solid fa-eye text-xs text-white"></i>
                             </button>
                             <button id="btnDelete" class="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">
-                                delete
+                                <i class="fa-solid fa-trash text-xs text-white"></i>
                             </button>
                         </td>
                     </tr>
@@ -115,10 +115,10 @@ new class extends Component
                         </td>
                         <td class="px-3 py-2">
                             <button class="px-2 py-1 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition cursor-pointer">
-                                View
+                                <i class="fa-solid fa-eye text-xs text-white"></i>
                             </button>
                             <button class="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">
-                                delete
+                                <i class="fa-solid fa-trash text-xs text-white"></i>
                             </button>
                         </td>
                     </tr>
@@ -139,37 +139,19 @@ new class extends Component
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="text-sm">Nama</label>
-                                    <input type="text" name="name"
-                                        class="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-500"
-                                        placeholder="Nama lengkap">
+                                    <input type="text" name="name" class="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-500" placeholder="Nama lengkap">
                                 </div>
                                 <div>
                                     <label class="text-sm">Email</label>
-                                    <input type="email" name="email"
-                                        class="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-500"
-                                        placeholder="Email">
-                                </div>
-                                <div>
-                                    <label class="text-sm">Phone</label>
-                                    <input type="number" name="phone" 
-                                        class="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-500"
-                                        placeholder="Nomor telepon">
-                                </div>
-                                <div>
-                                    <label class="text-sm">Address</label>
-                                    <input type="text" name="address"
-                                        class="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-500"
-                                        placeholder="Alamat">
+                                    <input type="email" name="email" class="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-500" placeholder="Email">
                                 </div>
                                 <div>
                                     <label for="password" class="text-sm">Password</label>
-                                    <input type="password" name="password" class="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-500"
-                                        placeholder="Password">
+                                    <input type="password" name="password" class="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-500" placeholder="Password">
                                 </div>
                                 <div>
                                     <label for="password_confirmation" class="text-sm">Confirm Password</label>
-                                    <input type="password" name="password_confirmation" class="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-500"
-                                        placeholder="Confirm Password">
+                                    <input type="password" name="password_confirmation" class="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-500" placeholder="Confirm Password">
                                 </div>
                                 {{-- btn --}}
                                 <div class="col-span-1 md:col-span-2 flex justify-end gap-4 mt-4">

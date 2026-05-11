@@ -79,10 +79,10 @@ new class extends Component
                         </td>
                         <td class="px-3 py-2">
                             <button id="btnView" class="px-2 py-1 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition cursor-pointer">
-                                View
+                                <i class="fa-solid fa-eye text-xs text-white"></i>
                             </button>
                             <button id="btnDelete" class="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">
-                                delete
+                                <i class="fa-solid fa-trash text-xs text-white"></i>
                             </button>
                         </td>
                     </tr>

@@ -62,7 +62,7 @@ new class extends Component
                         </div>
     
                         <div class="flex flex-row gap-2 w-full h-auto justify-end">
-                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 cursor-pointer">Save</button>
+                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 cursor-pointer">Save</button>
                             <button class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 cursor-pointer">Cancel</button>
                         </div>
                     </form>

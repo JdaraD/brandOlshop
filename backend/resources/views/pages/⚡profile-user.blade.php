@@ -37,7 +37,7 @@ new class extends Component
                     </div>
                 </div>
                 <div class="flex flex-row gap-2 w-full h-auto justify-end">
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 cursor-pointer">Update Profile</button>
+                    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 cursor-pointer">Update Profile</button>
                 </div>
 
             </form>
