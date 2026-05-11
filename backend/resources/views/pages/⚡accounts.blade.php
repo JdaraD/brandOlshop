@@ -25,15 +25,15 @@ new class extends Component
 
                 </div>
 
-                {{-- download transactions --}}
+                {{-- download account --}}
                 <div id="add-overlay" class="flex items-center justify-center p-2 bg-green-500 hover:bg-green-800 rounded-md cursor-pointer">
                     <p class="text-xs capitalize text-white font-medium">Add Account</p>
                 </div>
-                {{-- download transactions --}}
+                {{-- download account --}}
 
             </div>
             
-            {{-- table transactions --}}
+            {{-- table account --}}
             <div class="w-full h-full overflow-x-auto no-scrollbar">
                 <table class="min-w-full bg-white rounded-xl no-scrollbar shadow-md">
                     
@@ -126,11 +126,88 @@ new class extends Component
 
                 </table>
             </div>
-            {{-- table transactions --}}
+            {{-- table account --}}
+
+            {{-- overlay add account --}}
+            <div id="overlayAddAccount" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50">
+                <div class="flex items-center justify-center w-full min-h-screen p-4">
+                    <div class="bg-white rounded-md p-6 shadow-md w-full max-w-3xl">
+                        <form action="{{ route('registerasi.store') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <h2 class="flex w-full justify-center items-center text-2xl font-bold mb-4">Add Account</h2>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="text-sm">Nama</label>
+                                    <input type="text" name="name"
+                                        class="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-500"
+                                        placeholder="Nama lengkap">
+                                </div>
+                                <div>
+                                    <label class="text-sm">Email</label>
+                                    <input type="email" name="email"
+                                        class="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-500"
+                                        placeholder="Email">
+                                </div>
+                                <div>
+                                    <label class="text-sm">Phone</label>
+                                    <input type="number" name="phone" 
+                                        class="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-500"
+                                        placeholder="Nomor telepon">
+                                </div>
+                                <div>
+                                    <label class="text-sm">Address</label>
+                                    <input type="text" name="address"
+                                        class="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-500"
+                                        placeholder="Alamat">
+                                </div>
+                                <div>
+                                    <label for="password" class="text-sm">Password</label>
+                                    <input type="password" name="password" class="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-500"
+                                        placeholder="Password">
+                                </div>
+                                <div>
+                                    <label for="password_confirmation" class="text-sm">Confirm Password</label>
+                                    <input type="password" name="password_confirmation" class="w-full mt-1 px-4 py-2 rounded-lg bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 placeholder-gray-500"
+                                        placeholder="Confirm Password">
+                                </div>
+                                {{-- btn --}}
+                                <div class="col-span-1 md:col-span-2 flex justify-end gap-4 mt-4">
+                                    <button type="button" id="close-overlayAdd" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-md transition">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-md transition">
+                                        Add Account
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{-- overlay add account --}}
         </div>
     </div>
 </div>
 
 <script>
+// overlay add account
+const btnAdd = document.getElementById('add-overlay');
+const addOverlay = document.getElementById('overlayAddAccount');
+const closeAddOverlay = document.getElementById('close-overlayAdd');
+
+// tampilkan overlay saat tombol "Add Account" diklik
+btnAdd.addEventListener('click', () => {
+    addOverlay.classList.remove('hidden');
+    addOverlay.classList.add('flex');
+})
+
+// sembunyikan overlay saat tombol "Cancel" diklik
+closeAddOverlay.addEventListener('click', () => {
+    addOverlay.classList.remove('flex');
+    addOverlay.classList.add('hidden');
+})
+// overlay add account
 
 </script>
