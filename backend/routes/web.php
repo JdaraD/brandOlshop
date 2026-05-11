@@ -41,5 +41,6 @@ Route::resource('profile-web', ProfileWebsiteController::class);
 Route::resource('registerasi', registerController::class);
 Route::resource('loginUser', loginController::class);
 Route::resource('colors-admin', colorsAdmin::class);
-Route::put('/users/{id}', [userController::class, 'update']);
+Route::resource('users', userController::class);
+// Route::put('/users/{id}', [userController::class, 'update']);
 // Route::post('/login', [loginController::class, 'store'])->name('loginUser.store');
