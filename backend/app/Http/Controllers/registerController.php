@@ -43,6 +43,7 @@ class registerController extends Controller
         }
 
         User::create([
+            'is_active' => true,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
