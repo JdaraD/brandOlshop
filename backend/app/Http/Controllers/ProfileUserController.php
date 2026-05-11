@@ -30,12 +30,32 @@ class ProfileUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|string',
             'avatar' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
             'phone' => 'nullable|string',
             'address' => 'nullable|string',
             'gender' => 'nullable|string',
             'tempat_lahir' => 'nullable|string',
             'tanggal_lahir' => 'nullable|date',
+        ]);
+
+        // $userData = [];
+
+        // if ($request->filled('name')) {
+        //     $userData['name'] = $request->name;
+        // }
+
+        // if ($request->filled('email')) {
+        //     $userData['email'] = $request->email;
+        // }
+
+        // Auth::user()->update($userData);
+
+        // update users table
+        Auth::user()->update([
+            'name' => $request->name ?? Auth::user()->name,
+            'email' => $request->email ?? Auth::user()->email,
         ]);
 
         $path = $request->file('avatar')->store('avatars', 'public');

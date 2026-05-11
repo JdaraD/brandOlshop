@@ -10,40 +10,59 @@ new class extends Component
 
 <div class="flex pt-14 justify-center items-center w-full h-screen rounded-md">
     <div class="flex flex-col w-[99%] h-[99%] gap-3 overflow-y-auto no-scrollbar rounded-md p-4">
-        <div class="flex flex-col shrink-0 gap-4 bg-white w-full h-full p-4 rounded-md">
-            <div class="flex flex-col gap-2">
+        <div class="flex flex-col shrink-0 gap-4 bg-white w-full h-auto p-4 rounded-md">
+            <div class="flex flex-col gap">
                 <h1 class="text-2xl font-bold">Profile User</h1>
                 <p class="text-sm text-gray-500">Manage your profile information and settings.</p>
             </div>
-            <div class="flex flex-col gap-2 w-full h-auto">
-                <label for="profile_picture" class="text-sm font-medium text-gray-700">Profile Picture</label>
-                <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="Profile Picture" class="w-24 h-24 rounded-full object-cover">
-            </div>
-
-            <form action="" method="POST" enctype="multipart/form-data" class="flex flex-col gap-4 w-full h-auto p-2 bg-gray-100 rounded-md">
+            <form action="" method="POST" enctype="multipart/form-data" class="flex flex-col gap-4">
                 @csrf
-                <div class="flex flex-row gap-4 w-full h-auto">
-                    <div class="flex flex-col gap-2 w-[50%]">
-                        <label for="name">Nama</label>
-                        <input type="text" name="name" id="name" class="border border-gray-300 bg-white rounded-md p-1">
-                        <label for="email">Gmail :</label>
-                        <input type="email" name="email" id="email" class="border border-gray-300 bg-white rounded-md p-1" placeholder="Enter your gmail (gmail@example.com)">
-                        <label for="phone">Number Phone :</label>
-                        <input type="text" name="phone" id="phone" class="border border-gray-300 bg-white rounded-md p-1" placeholder="Enter your phone number">
-                    </div>
-                    <div class="flex flex-col gap-2 w-[50%]">
-                        <label for="address">Profile Brand :</label>
-                        <textarea name="address" id="address" cols="30" rows="4" class="border border-gray-300 bg-white rounded-md p-1"></textarea>
-                    </div>
+                <div class="flex flex-col gap-2 w-full h-auto">
+                    <label for="profile_picture" class="text-sm font-medium text-gray-700">Profile Picture</label>
+                    <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="Profile Picture" class="w-22 h-22 rounded-full object-cover">
                 </div>
-                <div class="flex flex-row gap-2 w-full h-auto justify-end">
-                    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 cursor-pointer">Update Profile</button>
+
+                <div class="flex flex-col gap-4 w-full h-auto p-2 bg-gray-100 rounded-md">
+                    <div class="flex flex-row gap-4 w-full h-auto">
+                        <div class="flex flex-col gap-2 w-[50%]">
+                            <label for="name">Nama</label>
+                            <input type="text" name="name" id="name" class="border border-gray-300 bg-white rounded-md p-1">
+                            <label for="email">Gmail :</label>
+                            <input type="email" name="email" id="email" class="border border-gray-300 bg-white rounded-md p-1" placeholder="Enter your gmail (gmail@example.com)">
+                            <label for="phone">Number Phone :</label>
+                            <input type="text" name="phone" id="phone" class="border border-gray-300 bg-white rounded-md p-1" placeholder="Enter your phone number">
+                            <label for="gender">Gender :</label>
+                            <select name="gender" id="gender" class="border border-gray-300 bg-white rounded-md p-1">
+                                <option value="" disabled selected>Select Gender</option>
+                                <option value="Laki-Laki">Laki-Laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
+
+                        </div>
+                        <div class="flex flex-col gap-2 w-[50%]">
+                            <label for="address">address :</label>
+                            <textarea name="address" id="address" cols="30" rows="4" class="border border-gray-300 bg-white rounded-md p-1"></textarea>
+                            <div class="flex gap-4">
+                                <div class="flex flex-col gap-2">
+                                    <label for="tempat_lahir">Tempat Lahir :</label>
+                                    <input type="text" name="tempat_lahir" id="tempat_lahir" class="border border-gray-300 bg-white rounded-md p-1">
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <label for="tempat_lahir">Tanggal Lahir :</label>
+                                    <input type="date" name="tempat_lahir" id="tempat_lahir" class="border border-gray-300 bg-white rounded-md p-1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-row gap-2 w-full h-auto justify-end">
+                        <button type="submit" class="bg-green-600 text-[14px] text-white px-4 py-2 rounded-md hover:bg-green-700 cursor-pointer">Update Profile</button>
+                    </div>
                 </div>
 
             </form>
                 <div class="flex flex-row gap-2 w-full h-auto items-center justify-end">
                     <p class="text-sm text-gray-500">Want to change your password?</p>
-                    <button id="open-overlayRestartPass" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 cursor-pointer">Restart Password</button>
+                    <button id="open-overlayRestartPass" class="bg-red-500 text-[14px] text-white px-4 py-2 rounded-md hover:bg-red-600 cursor-pointer">Restart Password</button>
                 </div>
 
             {{-- overlay restart password --}}
