@@ -6,6 +6,7 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileWebsiteController;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/login', 'Auth.login')->name('login');
@@ -40,4 +41,5 @@ Route::resource('profile-web', ProfileWebsiteController::class);
 Route::resource('registerasi', registerController::class);
 Route::resource('loginUser', loginController::class);
 Route::resource('colors-admin', colorsAdmin::class);
+Route::put('/users/{id}', [userController::class, 'update']);
 // Route::post('/login', [loginController::class, 'store'])->name('loginUser.store');

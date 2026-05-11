@@ -1,11 +1,23 @@
 <?php
 
 use Livewire\Component;
+use App\Models\User;
 
 new class extends Component
 {
-    //
-};
+    public $users;
+
+    public function loadUsers()
+    {
+        $this->users = User::all();
+    }
+
+    public function mount()
+    {
+        $this->loadUsers();
+    }
+
+}
 ?>
 
 <div class="flex pt-14 justify-center items-center w-full h-screen rounded-md">
@@ -52,44 +64,57 @@ new class extends Component
 
                     <!-- BODY -->
                     <tbody class="text-gray-600 text-sm">
-                    @for ($i = 1; $i <= 4; $i++) 
+                    @foreach ($users as $user) 
                     <tr class="border-b hover:bg-gray-50 transition">
-                        <td class="px-4 py-3 text-center">{{$i}}</td>
-                        <td class="px-4 py-3 font-medium text-gray-900">TXN001</td>
-                        <td class="px-4 py-3">John Doe</td>
-                        <td class="px-4 py-3">john.doe@example.com</td>
-                        <td class="px-4 py-3">Admin</td>
-                        <td class="px-4 py-3">
-                            <div x-data="{ on: true }" class="flex items-center gap-4">
-                                
-                                <!-- Toggle -->
-                                <button 
-                                    @click="on = !on"
-                                    :class="on ? 'bg-green-500' : 'bg-gray-300'"
-                                    class="relative w-12 h-6 rounded-full transition-all duration-300 ease-in-out"
-                                >
-                                    <!-- Circle -->
-                                    <span 
-                                        :class="on ? 'translate-x-6' : 'translate-x-0'"
-                                        class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-all duration-300 shadow-md"
-                                    ></span>
-                                </button>
+                            <td class="px-4 py-3 text-center">{{ $loop->iteration }}</td>
+                            <td class="px-4 py-3 font-medium text-gray-900">TXN001</td>
+                            <td class="px-4 py-3">{{$user->name}}</td>
+                            <td class="px-4 py-3">{{$user->email}}</td>
+                            <td class="px-4 py-3">{{$user->role->name}}</td>
+                            <td class="px-4 py-3">
+                                <div x-data="{ on: {{ $user->is_active ? 'true' : 'false' }} }" class="flex items-center gap-4">
 
-                            </div>
-                        </td>
+                                    <!-- Toggle -->
+                                    <button 
+                                        @click="
+                                            on = !on;
+
+                                            setTimeout(() => {
+                                                fetch('/users/{{ $user->id }}', {
+                                                    method: 'PUT',
+                                                    headers: {
+                                                        'Content-Type': 'application/json',
+                                                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                                    },
+                                                    body: JSON.stringify({
+                                                        is_active: on
+                                                    })
+                                                });
+                                            }, 1000);
+                                        "
+
+                                        :class="on ? 'bg-green-500' : 'bg-gray-300'" class="relative w-12 h-6 rounded-full transition-all duration-300 ease-in-out">
+
+                                        <!-- Circle -->
+                                        <span :class="on ? 'translate-x-6' : 'translate-x-0'" class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-all duration-300 shadow-md"></span>
+
+                                    </button>
+
+                                </div>
+                            </td>
                         <td class="px-3 py-2">
-                            <button id="btnView" class="px-2 py-1 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition cursor-pointer">
+                            <button id="btnViewAccount" class="px-2 py-1 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition cursor-pointer">
                                 <i class="fa-solid fa-eye text-xs text-white"></i>
                             </button>
-                            <button id="btnDelete" class="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">
+                            <button id="btnViewAccount" class="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">
                                 <i class="fa-solid fa-trash text-xs text-white"></i>
                             </button>
                         </td>
                     </tr>
-                    @endfor
+                    @endforeach
 
                     <!-- contoh row tambahan -->
-                    <tr class="border-b hover:bg-gray-50 transition bg-gray-50/50">
+                    {{-- <tr class="border-b hover:bg-gray-50 transition bg-gray-50/50">
                         <td class="px-4 py-3 text-center">5</td>
                         <td class="px-4 py-3 font-medium text-gray-900">TXN002</td>
                         <td class="px-4 py-3">John Doe</td>
@@ -121,7 +146,7 @@ new class extends Component
                                 <i class="fa-solid fa-trash text-xs text-white"></i>
                             </button>
                         </td>
-                    </tr>
+                    </tr> --}}
                     </tbody>
 
                 </table>
@@ -169,6 +194,58 @@ new class extends Component
                 </div>
             </div>
             {{-- overlay add account --}}
+
+            {{-- overlay view account --}}
+            <div id="overlayView" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50">
+                <div class="flex justify-center items-center w-full min-h-screen p-4">
+                    <div class="flex flex-col gap-4 bg-white p-6 shadow-md w-full max-w-3xl rounded-md">
+                        <h1 class="text-xl font-bold capitalize">Profil User</h1>
+                        {{-- img --}}
+                        <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="Profile Picture" class="w-22 h-22 rounded-full object-cover">
+                        {{-- img --}}
+
+                        {{-- detail identitas --}}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="flex flex-col gap-2">
+                                <label for="">Name :</label>
+                                <p class="border border-gray-300 bg-white rounded-md p-2"></p>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label for="">Email :</label>
+                                <p class="border border-gray-300 bg-white rounded-md p-2"></p>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label for="">Phone :</label>
+                                <p class="border border-gray-300 bg-white rounded-md p-2"></p>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label for="">Gender :</label>
+                                <p class="border border-gray-300 bg-white rounded-md p-2"></p>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="flex flex-col gap-2">
+                                    <label for="">Tempat Lahir :</label>
+                                    <p class="border border-gray-300 bg-white rounded-md p-2"></p>
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <label for="">Tanggal Lahir :</label>
+                                    <p class="border border-gray-300 bg-white rounded-md p-2"></p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label for="">Adress :</label>
+                                <p class="border border-gray-300 bg-white rounded-md p-2"></p>
+                            </div>
+                        </div>
+                        {{-- detail identitas --}}
+                        <div class="flex gap-2 justify-end">
+                            <button id="closeOverlayView" class="bg-gray-600 text-[14px] text-white px-4 py-2 rounded-md hover:bg-gray-700 cursor-pointer capitalize">close</button>
+                            <button class="bg-red-600 text-[14px] text-white px-4 py-2 rounded-md hover:bg-red-700 cursor-pointer capitalize">restart password</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- overlay view account --}}
         </div>
     </div>
 </div>
@@ -183,13 +260,32 @@ const closeAddOverlay = document.getElementById('close-overlayAdd');
 btnAdd.addEventListener('click', () => {
     addOverlay.classList.remove('hidden');
     addOverlay.classList.add('flex');
-})
+});
 
 // sembunyikan overlay saat tombol "Cancel" diklik
 closeAddOverlay.addEventListener('click', () => {
     addOverlay.classList.remove('flex');
     addOverlay.classList.add('hidden');
-})
+});
 // overlay add account
+
+// overlay View
+const btnView = document.getElementById('btnViewAccount');
+const viewOverlay = document.getElementById('overlayView');
+const closeView = document.getElementById('closeOverlayView');
+
+// tampilkan overlay saat tombol "View Account" diklik
+btnView.addEventListener('click', () => {
+    viewOverlay.classList.remove('hidden');
+    viewOverlay.classList.add('flex');
+});
+
+// sembunyikan overlay saat tombol "Cancel" diklik
+closeView.addEventListener('click', () => {
+    viewOverlay.classList.remove('flex');
+    viewOverlay.classList.add('hidden');
+})
+
+// overlay View
 
 </script>
