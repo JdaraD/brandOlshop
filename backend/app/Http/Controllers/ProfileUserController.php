@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\profileUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileUserController extends Controller
 {
@@ -27,7 +29,26 @@ class ProfileUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
+            'phone' => 'nullable|string',
+            'address' => 'nullable|string',
+            'gender' => 'nullable|string',
+            'tempat_lahir' => 'nullable|string',
+            'tanggal_lahir' => 'nullable|date',
+        ]);
+
+        $path = $request->file('avatar')->store('avatars', 'public');
+
+        profileUsers::create([
+            'user_id' => Auth::id(),
+            'avatar' => $path,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'gender' => $request->gender,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+        ]);
     }
 
     /**
