@@ -205,38 +205,91 @@ new class extends Component
 
             {{-- overlay products --}}
             <div class="{{ $showOverlayProduct ? '' : 'hidden' }} fixed inset-0 bg-black/50 backdrop-blur-sm z-50">
-                <div class="flex justify-center items-center w-full h-full">
-                    <div class="flex flex-col justify-center items-center gap-6 bg-white rounded-md p-6 shadow-md w-full max-w-sm text-center">
-                        <p class="capitalize font-bold text-lg">details products</p>
-                        <div class="flex flex-col justify-center items-center gap-4">
-                            @if ($selectedProduct)
-                                <div class="flex justify-center items-center w-40 h-40 border border-dashed rounded-md">
-                                    <img src="{{ asset('storage/' . $selectedProduct->image) }}" alt="" class="max-h-full max-w-full object-contain">
-                                </div>
-
-                                <div class="flex flex-col gap-1 justify-start w-full items-start">
-                                    <div class="flex flex-row justify-start items-start gap-1">
-                                        <label for="name" class="text-md capitalize">Nama Product :</label>
-                                        <p class="text-md capitalize">{{ $selectedProduct->name }}</p>
-                                    </div>
-                                    <div class="flex flex-row justify-start items-start gap-1">
-                                        <label for="name" class="text-md capitalize">Stock Product :</label>
-                                        <p class="text-md capitalize">{{ $selectedProduct->stock }}</p>
-                                    </div>
-                                    <div class="flex flex-row justify-start items-start gap-1">
-                                        <label for="name" class="text-md capitalize">Harga :</label>
-                                        <p class="text-md capitalize">Rp {{ number_format($selectedProduct->price, 0, ',', '.') }}</p>
+                <div class="flex justify-center items-center w-full h-full p-4">
+                    <div class="flex flex-col justify-center bg-white rounded-xl p-6 shadow-md w-full max-w-3xl">
+                        {{-- title --}}
+                        <p class="capitalize font-bold text-2xl text-center mb-6">details products</p>
+                        @if ($selectedProduct)
+                            {{-- content --}}
+                            <div class="flex justify-center w-full h-full gap-6">
+                                {{-- gambar utama --}}
+                                <div>
+                                    <div class="flex justify-center items-center w-64 h-64 border border-dashed rounded-lg overflow-hidden">
+                                        <img src="{{ asset('storage/' . $selectedProduct->image) }}" alt="" class="w-full h-full object-contain">
                                     </div>
                                 </div>
-                            @endif
+                                {{-- detail produk --}}
+                                <div class="flex flex-col gap-2">
+                                    <div class="flex flex-wrap gap-1">
+                                        <label class="font-semibold">
+                                            Nama Product :
+                                        </label>
+                                        <p class="capitalize">
+                                            {{ $selectedProduct->name }}
+                                        </p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-1">
+                                        <label class="font-semibold">
+                                            Stock Product :
+                                        </label>
+                                        <p>
+                                            {{ $selectedProduct->stock }}
+                                        </p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-1">
+                                        <label class="font-semibold">
+                                            Harga :
+                                        </label>
+                                        <p>
+                                            Rp {{ number_format($selectedProduct->price, 0, ',', '.') }}
+                                        </p>
+                                    </div>
+                                    <div class="flex flex-col gap-1 mt-2">
+                                        <label class="font-semibold">
+                                            Description :
+                                        </label>
+                                        <p class="text-gray-600 text-sm">
+                                            {{ $selectedProduct->description }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        {{-- gallery image --}}
+                        <div class="flex gap-1 w-full justify-end">
+                            <div id="" class="flex items-center justify-center px-2 py-1 bg-green-500 hover:bg-green-800 rounded-md cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" fill="white" y="0px" width="18" height="18" viewBox="0 0 30 30">
+                                    <path d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M21,16h-5v5 c0,0.553-0.448,1-1,1s-1-0.447-1-1v-5H9c-0.552,0-1-0.447-1-1s0.448-1,1-1h5V9c0-0.553,0.448-1,1-1s1,0.447,1,1v5h5 c0.552,0,1,0.447,1,1S21.552,16,21,16z"></path>
+                                </svg>
+                            </div>
+                            <button id="btnViewAccount" class="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">
+                                <i class="fa-solid fa-trash text-xs text-white"></i>
+                            </button>
                         </div>
-                        <div class="flex justify-center items-center gap-4">
-                            <button id="update-detailProduct" class="flex capitalize bg-green-600 hover:bg-green-700 text-white rounded-md px-4 py-2 cursor-pointer">Update</button>
-                            <button wire:click="closeOverlayProducts" class="flex capitalize bg-red-600 hover:bg-red-700 text-white rounded-md px-4 py-2 cursor-pointer">close</button>
+                        
+                        <div class="flex felx-col gap-3 overflow-x-auto pb-2 w-full scrollbar-thin mt-2">
+                            {{-- contoh looping gambar --}}
+                            @for ($i = 0; $i < 20; $i++)
+                                <div class="flex justify-center items-center w-20 h-20 border rounded-md overflow-hidden shrink-0 cursor-pointer hover:border-blue-500 transition">
+                                    <img src="{{ asset('/img/1.png') }}" alt="" class="w-full h-full object-contain">
+                                </div>
+                                
+                            @endfor
+                        </div>
+
+                        {{-- button --}}
+                        <div class="flex justify-center items-center gap-4 mt-8">
+                            <button id="update-detailProduct"class="bg-green-600 hover:bg-green-700 text-white rounded-md px-6 py-2 capitalize transition">
+                                update
+                            </button>
+                            <button wire:click="closeOverlayProducts" class="bg-red-600 hover:bg-red-700 text-white rounded-md px-6 py-2 capitalize transition">
+                                close
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
+
             {{-- overlay products --}}
         </div>
     </div>
