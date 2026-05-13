@@ -257,12 +257,12 @@ new class extends Component
                         @endif
                         {{-- gallery image --}}
                         <div class="flex gap-1 w-full justify-end">
-                            <div id="" class="flex items-center justify-center px-2 py-1 bg-green-500 hover:bg-green-800 rounded-md cursor-pointer">
+                            <div id="openAddImage" class="flex items-center justify-center px-2 py-1 bg-green-500 hover:bg-green-800 rounded-md cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" fill="white" y="0px" width="18" height="18" viewBox="0 0 30 30">
                                     <path d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M21,16h-5v5 c0,0.553-0.448,1-1,1s-1-0.447-1-1v-5H9c-0.552,0-1-0.447-1-1s0.448-1,1-1h5V9c0-0.553,0.448-1,1-1s1,0.447,1,1v5h5 c0.552,0,1,0.447,1,1S21.552,16,21,16z"></path>
                                 </svg>
                             </div>
-                            <button id="btnViewAccount" class="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">
+                            <button class="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">
                                 <i class="fa-solid fa-trash text-xs text-white"></i>
                             </button>
                         </div>
@@ -277,6 +277,41 @@ new class extends Component
                             @endfor
                         </div>
 
+                        {{-- overlay add image --}}
+                        <div id="overlayAddImage" class="hidden fixed inset-0 bg-black/50 backdrop-blur-xs z-60">
+                            <div class="flex justify-center items-center w-full h-full p-4">
+                                <div class="flex flex-col gap-4 justify-center items-center bg-white rounded-xl p-6 shadow-md w-full max-w-2xl">
+                                    <h1 class="text-xl font-bold">Tambah Gambar Product</h1>
+                                    <form action="{{ route('product-images.store') }}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        {{-- details --}}
+                                        <div class="flex flex-col gap-2 w-64 h-64">
+
+                                            <label for="file-upload" class="flex justify-center items-center border border-dashed border-gray-400 rounded-md h-40 md:h-full w-full cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-500">
+                                                Upload
+                                            </label>
+
+                                            <input id="file-upload" type="file" name="image" class="hidden" onchange="previewImage(event)">
+
+                                            <img id="preview" class="hidden w-full h-40 object-cover rounded-md" />
+                                        </div>
+                                        {{-- details --}}
+                                        
+                                        {{-- button --}}
+                                        <div class="flex justify-center items-center gap-4 mt-8">
+                                            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white rounded-md px-6 py-2 capitalize transition">
+                                                update
+                                            </button>
+                                            <button type="button" id="closeAddImage" class="bg-red-600 hover:bg-red-700 text-white rounded-md px-6 py-2 capitalize transition">
+                                                close
+                                            </button>
+                                        </div>
+                                        {{-- button --}}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
                         {{-- button --}}
                         <div class="flex justify-center items-center gap-4 mt-8">
                             <button id="update-detailProduct"class="bg-green-600 hover:bg-green-700 text-white rounded-md px-6 py-2 capitalize transition">
@@ -289,7 +324,6 @@ new class extends Component
                     </div>
                 </div>
             </div>
-
             {{-- overlay products --}}
         </div>
     </div>
@@ -359,5 +393,19 @@ new class extends Component
     //     overlayProduct.style.display = 'none';
     // })
     // overlay detail product
+
+    // overlay add image
+    const btnOpen =  document.getElementById('openAddImage');
+    const viewAdd = document.getElementById('overlayAddImage');
+    const btnClose = document.getElementById('closeAddImage');
+
+    btnOpen.addEventListener('click', () => {
+        viewAdd.classList.remove('hidden');
+    });
+
+    btnClose.addEventListener('click', () => {
+        viewAdd.classList.add('hidden');
+    });
+    // overlay add image
 
 </script>
