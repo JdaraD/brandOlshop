@@ -259,7 +259,7 @@ new class extends Component
                                 <div class="flex justify-center items-center w-full h-full p-4">
                                     <div class="flex flex-col gap-4 justify-center items-center bg-white rounded-xl p-6 shadow-md w-full max-w-2xl">
                                         <h1 class="text-xl font-bold">Tambah Gambar Product</h1>
-                                        <form action="{{ route('product-images.store') }}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('product-images.store') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             {{-- details --}}
                                             <div class="flex flex-col gap-2 w-64 h-64">
@@ -269,7 +269,7 @@ new class extends Component
                                                     Upload
                                                 </label>
 
-                                                <input id="file-upload-album" type="file" name="image" class="opacity-0 absolute -z-10" accept="image/*" multiple>
+                                                <input id="file-upload-album" type="file" name="image[]" class="opacity-0 absolute -z-10" accept="image/*" multiple>
 
                                                 <img id="preview" class="hidden w-full h-40 object-cover rounded-md" />
                                             </div>

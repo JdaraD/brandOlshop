@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ProductImages as ModelsproductImages;
+use App\Models\productImages as ModelsProductImages;
 
-class productImages extends Controller
+class productImagesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,7 +38,7 @@ class productImages extends Controller
 
             $path = $image->store('productImage', 'public');
 
-            ModelsproductImages::create([
+            ModelsProductImages::create([
                 'product_id' => $request->product_id,
                 'image' => $path,
             ]);

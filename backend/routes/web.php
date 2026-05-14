@@ -3,7 +3,7 @@
 use App\Http\Controllers\CategoriesProductsController;
 use App\Http\Controllers\colorsAdmin;
 use App\Http\Controllers\loginController;
-use App\Http\Controllers\productImages;
+use App\Http\Controllers\productImagesController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileWebsiteController;
 use App\Http\Controllers\registerController;
@@ -43,6 +43,6 @@ Route::resource('registerasi', registerController::class);
 Route::resource('loginUser', loginController::class);
 Route::resource('colors-admin', colorsAdmin::class);
 Route::resource('users', userController::class);
-Route::resource('product-images', productImages::class);
+Route::resource('product-images', productImagesController::class);
 // Route::put('/users/{id}', [userController::class, 'update']);
 // Route::post('/login', [loginController::class, 'store'])->name('loginUser.store');
