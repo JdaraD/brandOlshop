@@ -295,15 +295,18 @@ new class extends Component
 
                         {{-- gallery image --}}
                         <div class="flex gap-1 w-full justify-end">
-                            <div id="confirm-delete" class="hidden confrimBtnDelete text-xs items-center justify-center w-auto px-2 py-1 bg-red-500 hover:bg-red-800 rounded-md cursor-pointer text-white">
-                                Hapus
-                            </div>
+                            @if ($selectedProduct && $selectedProduct->productImages->isNotEmpty())
+                                <div id="confirmDeleteImage" class="hidden confirmBtnDelete text-xs items-center justify-center w-auto px-2 py-1 bg-red-500 hover:bg-red-800 rounded-md cursor-pointer text-white">
+                                    Hapus
+                                </div>
+                            @endif
                             <div id="openAddImage" onclick="document.getElementById('overlayAddImage').classList.remove('hidden')" class="flex items-center justify-center px-2 py-1 bg-green-500 hover:bg-green-800 rounded-md cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" fill="white" y="0px" width="18" height="18" viewBox="0 0 30 30">
                                     <path d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M21,16h-5v5 c0,0.553-0.448,1-1,1s-1-0.447-1-1v-5H9c-0.552,0-1-0.447-1-1s0.448-1,1-1h5V9c0-0.553,0.448-1,1-1s1,0.447,1,1v5h5 c0.552,0,1,0.447,1,1S21.552,16,21,16z"></path>
                                 </svg>
                             </div>
-                            <button id="btnDeleteMode" class="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">
+                            <button id="btnDeleteMode" {{ $selectedProduct && $selectedProduct->productImages->isEmpty() ? 'disabled' : '' }}
+                                class="px-2 py-1 text-xs font-medium text-white rounded-md transition {{ $selectedProduct && $selectedProduct->productImages->isEmpty() ? 'bg-gray-400 cursor-not-allowed opacity-50' : 'bg-red-600 hover:bg-red-700 cursor-pointer' }}">
                                 <i class="fa-solid fa-trash text-xs text-white"></i>
                             </button>
                         </div>
@@ -313,7 +316,7 @@ new class extends Component
                             @if ($selectedProduct && $selectedProduct->productImages->isNotEmpty())
                                 @foreach ($selectedProduct->productImages as $album)
                                     <div class="relative flex justify-center items-center w-20 h-20 border rounded-md overflow-hidden shrink-0">
-                                        <input type="checkbox" class="select-image-box hidden absolute top-2 left-2 w-4 h-4 z-40">
+                                        <input type="checkbox" value="{{ $album->id }}" class="select-image-box hidden absolute top-2 left-2 w-4 h-4 z-40">
                                         <img src="{{ asset('storage/'. $album->image) }}"
                                             class="w-full h-full object-contain">
                                     </div>
@@ -400,7 +403,7 @@ new class extends Component
     document.getElementById('btnDeleteMode').addEventListener('click', () => {
         deleteModeImage = !deleteModeImage;
 
-        document.querySelectorAll('.confrimBtnDelete').forEach(dI => {
+        document.querySelectorAll('.confirmBtnDelete').forEach(dI => {
             dI.classList.toggle('hidden');
         })
 
@@ -408,21 +411,30 @@ new class extends Component
             dI.classList.toggle('hidden');
         })
     });
+
+    document.getElementById('confirmDeleteImage').addEventListener('click', () => {
+
+        const checkedImages = document.querySelectorAll('.select-image-box:checked');
+
+        // cek apakah tidak ada yang dipilih
+        if (checkedImages.length === 0) {
+
+            alert('Pilih gambar terlebih dahulu');
+
+            return;
+        }
+
+        // ambil semua id image
+        const imageIds = [];
+
+        checkedImages.forEach(image => {
+            imageIds.push(image.value);
+        });
+
+        console.log(imageIds);
+
+        // lanjut delete
+    });
     // delete btn image foto
-
-    // overlay detail product
-    // const overlayProduct = document.getElementById('overlayProduct');
-    // const overlaycloseProduct = document.getElementById('cancel-detailProduct');
-
-    // // show teh over when the "open overlay products" button is clicked
-    // document.getElementById('overlayProductsDetails').addEventListener('click', () => {
-    //     overlayProduct.style.display = 'flex';
-    // })
-
-    // // hiden teh overlay when the "cancel" button is clicked
-    // overlaycloseProduct.addEventListener('click', () => {
-    //     overlayProduct.style.display = 'none';
-    // })
-    // overlay detail product
 
 </script>
