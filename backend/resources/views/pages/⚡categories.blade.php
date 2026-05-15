@@ -43,7 +43,7 @@ new class extends Component
                 
                 {{-- buttons --}}
                 <div class="flex items-center justify-end gap-2 w-full h-full rounded-md">
-                    <div id="confirm-delete" class="hidden confrimBtn flex items-center justify-center w-auto px-2 h-8 bg-red-500 hover:bg-red-800 rounded-md cursor-pointer text-white">
+                    <div id="confirm-delete" class="hidden confrimBtn items-center justify-center w-auto px-2 h-8 bg-red-500 hover:bg-red-800 rounded-md cursor-pointer text-white">
                         Hapus
                     </div>
                     <div id="add-overlay" class="flex items-center justify-center w-6 h-8 bg-green-500 hover:bg-green-800 rounded-md cursor-pointer">

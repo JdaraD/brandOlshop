@@ -295,12 +295,15 @@ new class extends Component
 
                         {{-- gallery image --}}
                         <div class="flex gap-1 w-full justify-end">
+                            <div id="confirm-delete" class="hidden confrimBtnDelete text-xs items-center justify-center w-auto px-2 py-1 bg-red-500 hover:bg-red-800 rounded-md cursor-pointer text-white">
+                                Hapus
+                            </div>
                             <div id="openAddImage" onclick="document.getElementById('overlayAddImage').classList.remove('hidden')" class="flex items-center justify-center px-2 py-1 bg-green-500 hover:bg-green-800 rounded-md cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" fill="white" y="0px" width="18" height="18" viewBox="0 0 30 30">
                                     <path d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M21,16h-5v5 c0,0.553-0.448,1-1,1s-1-0.447-1-1v-5H9c-0.552,0-1-0.447-1-1s0.448-1,1-1h5V9c0-0.553,0.448-1,1-1s1,0.447,1,1v5h5 c0.552,0,1,0.447,1,1S21.552,16,21,16z"></path>
                                 </svg>
                             </div>
-                            <button class="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">
+                            <button id="btnDeleteMode" class="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition cursor-pointer">
                                 <i class="fa-solid fa-trash text-xs text-white"></i>
                             </button>
                         </div>
@@ -309,7 +312,8 @@ new class extends Component
                             {{-- album gambar --}}
                             @if ($selectedProduct && $selectedProduct->productImages->isNotEmpty())
                                 @foreach ($selectedProduct->productImages as $album)
-                                    <div class="flex justify-center items-center w-20 h-20 border rounded-md overflow-hidden shrink-0">
+                                    <div class="relative flex justify-center items-center w-20 h-20 border rounded-md overflow-hidden shrink-0">
+                                        <input type="checkbox" class="select-image-box hidden absolute top-2 left-2 w-4 h-4 z-40">
                                         <img src="{{ asset('storage/'. $album->image) }}"
                                             class="w-full h-full object-contain">
                                     </div>
@@ -390,6 +394,22 @@ new class extends Component
     });
     // overlay delete
 
+    // delete btn image foto
+    let deleteModeImage = false
+
+    document.getElementById('btnDeleteMode').addEventListener('click', () => {
+        deleteModeImage = !deleteModeImage;
+
+        document.querySelectorAll('.confrimBtnDelete').forEach(dI => {
+            dI.classList.toggle('hidden');
+        })
+
+        document.querySelectorAll('.select-image-box').forEach(dI => {
+            dI.classList.toggle('hidden');
+        })
+    });
+    // delete btn image foto
+
     // overlay detail product
     // const overlayProduct = document.getElementById('overlayProduct');
     // const overlaycloseProduct = document.getElementById('cancel-detailProduct');
@@ -404,24 +424,5 @@ new class extends Component
     //     overlayProduct.style.display = 'none';
     // })
     // overlay detail product
-
-    // overlay add image
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     const btnOpen =  document.getElementById('openAddImage');
-    //     const viewAdd = document.getElementById('overlayAddImage');
-    //     const btnClose = document.getElementById('closeAddImage');
-
-    //     if (btnOpen && viewAdd && btnClose) {
-    //         btnOpen.addEventListener('click', () => {
-    //             viewAdd.classList.remove('hidden');
-    //         });
-        
-    //         btnClose.addEventListener('click', () => {
-    //             viewAdd.classList.add('hidden');
-    //         });
-
-    //     }
-    // });
-    // overlay add image
 
 </script>
