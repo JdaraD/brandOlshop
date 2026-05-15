@@ -3,6 +3,7 @@
 use Livewire\Component;
 use App\Models\CategoriesProducts;
 use App\Models\Products;
+use App\Models\productImages;
 
 new class extends Component
 {
@@ -32,7 +33,7 @@ new class extends Component
 
     public function openOverlayProducts($id)
     {
-        $this->selectedProduct = Products::find($id);
+        $this->selectedProduct = Products::with('productImages')->find($id);
         $this->showOverlayProduct = true;
     }
 
@@ -305,13 +306,21 @@ new class extends Component
                         </div>
                         
                         <div class="flex felx-col gap-3 overflow-x-auto pb-2 w-full scrollbar-thin mt-2">
-                            {{-- contoh looping gambar --}}
-                            @for ($i = 0; $i < 20; $i++)
-                                <div class="flex justify-center items-center w-20 h-20 border rounded-md overflow-hidden shrink-0 cursor-pointer hover:border-blue-500 transition">
-                                    <img src="{{ asset('/img/1.png') }}" alt="" class="w-full h-full object-contain">
-                                </div>
-                                
-                            @endfor
+                            {{-- album gambar --}}
+                            @if ($selectedProduct && $selectedProduct->productImages->isNotEmpty())
+                                @foreach ($selectedProduct->productImages as $album)
+                                    <div class="flex justify-center items-center w-20 h-20 border rounded-md overflow-hidden shrink-0">
+                                        <img src="{{ asset('storage/'. $album->image) }}"
+                                            class="w-full h-full object-contain">
+                                    </div>
+                                @endforeach
+                            @else
+                                @for ($i = 1; $i < 9; $i++)
+                                    <div class="flex justify-center items-center w-20 h-20 rounded-md overflow-hidden shrink-0">
+                                        <div class="flex w-full h-full animate-pulse bg-gray-400"></div>
+                                    </div>
+                                @endfor
+                            @endif
                         </div>
 
                         {{-- button --}}
