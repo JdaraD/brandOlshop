@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import "tailwindcss";
 
 function Home() {
-    return (
-        <div>
-            <h1>Home</h1>
-            <p>Welcome to our home page!</p>
-        </div>
-    )
+  return (
+    <div>
+      <h1>Home</h1>
+      <p>Welcome to our home page!</p>
+    </div>
+  );
 }
 
 export default Home;
