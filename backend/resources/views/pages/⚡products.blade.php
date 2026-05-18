@@ -331,10 +331,10 @@ new class extends Component
                         </div>
 
                         {{-- button --}}
-                        <div class="flex justify-center items-center gap-4 mt-8">
-                            <button id="update-detailProduct"class="bg-green-600 hover:bg-green-700 text-white rounded-md px-6 py-2 capitalize transition">
+                        <div class="flex justify-end items-center gap-4 mt-8">
+                            {{-- <button id="update-detailProduct"class="bg-green-600 hover:bg-green-700 text-white rounded-md px-6 py-2 capitalize transition">
                                 update
-                            </button>
+                            </button> --}}
                             <button wire:click="closeOverlayProducts" class="bg-red-600 hover:bg-red-700 text-white rounded-md px-6 py-2 capitalize transition">
                                 close
                             </button>
