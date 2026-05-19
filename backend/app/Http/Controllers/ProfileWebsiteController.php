@@ -12,7 +12,29 @@ class ProfileWebsiteController extends Controller
      */
     public function index()
     {
-        //
+        $profile = profileWebsite::first();
+
+        if (!$profile) {
+            return response()->json([
+                'message' => 'Profile not found'
+            ], 404);
+        }
+
+        return response()->json([
+            'data' => [
+                'id' => $profile->id,
+                'name' => $profile->name,
+                'email' => $profile->email,
+                'logo' => url('storage/' . $profile->logo),
+                'sm_facebook' => $profile->sm_facebook,
+                'sm_instagram' => $profile->sm_instagram,
+                'to_tiktok' => $profile->to_tiktok,
+                'to_shoppee' => $profile->to_shoppee,
+                'to_tokopedia' => $profile->to_tokopedia,
+                'address' => $profile->address,
+                'profile_description' => $profile->profile_description,
+            ]
+        ]);
     }
 
     /**
