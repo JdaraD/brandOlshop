@@ -1,9 +1,8 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import './App.css'
-import Layouts from './layouts'
-import Home from './components/home'
-import Categories from './components/categories'
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Layouts from "./layouts";
+import Home from "./components/pages/home";
+import Categories from "./components/pages/categories";
 
 function App() {
   return (
@@ -15,7 +14,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
 export default App;

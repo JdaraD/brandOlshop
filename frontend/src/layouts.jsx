@@ -1,14 +1,13 @@
-import { Outlet } from 'react-router-dom'
-import Introduction from './components/introduction'
-
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/layouts/navbar";
 
 function Layouts() {
   return (
     <>
-    <Introduction />
-    <main className="pt-8">
-      <Outlet />
-    </main>
+      <Navbar className="flex relative z-50" />
+      <main className="pt-20">
+        <Outlet />
+      </main>
     </>
   );
 }
