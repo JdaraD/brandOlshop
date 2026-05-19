@@ -5,7 +5,7 @@ function Layouts() {
   return (
     <>
       <Navbar className="flex relative z-50" />
-      <main className="pt-20">
+      <main className="pt-16">
         <Outlet />
       </main>
     </>

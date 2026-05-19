@@ -11,10 +11,7 @@ function Navbar() {
   useEffect(() => {
     fetch("http://localhost:8000/api/profile-website")
       .then((res) => res.json())
-      .then((data) => {
-        console.log("API RESPONSE:", data);
-        setProfile(data.data);
-      })
+      .then((data) => setProfile(data.data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -23,12 +20,11 @@ function Navbar() {
   return (
     <div className="fixed flex justify-between items-center px-8 bg-green-300 w-full h-auto">
       {/* Logo */}
-      <div className="flex justify-center items-center w-20 h-20">
-        <img
-          src={profile.logo}
-          alt="logo"
-          className="object-contain w-full h-full"
-        />
+      <div className="flex justify-center items-center gap-2">
+        <div className="flex justify-center items-center w-16 h-16">
+          <img src={profile.logo} alt="logo" />
+        </div>
+        <p className="capitalize font-bold text-base">{profile.name}</p>
       </div>
 
       {/* Menu */}
