@@ -18,7 +18,7 @@ function Navbar() {
   if (!profile) return <p>loding...</p>;
 
   return (
-    <div className="fixed flex justify-between items-center px-8 bg-green-300 w-full h-auto">
+    <div className="fixed flex justify-between items-center px-8 bg-white w-full h-auto">
       {/* Logo */}
       <div className="flex justify-center items-center gap-2">
         <div className="flex justify-center items-center w-16 h-16">
@@ -48,7 +48,7 @@ function Navbar() {
       <div className="flex items-center gap-4">
         {/* Search */}
         <div className="flex items-center gap-2 border rounded-lg px-3 py-2">
-          <FaSearch className="text-gray-500" />
+          <FaSearch id="" className="text-gray-500 cursor-pointer" />
 
           <input
             type="text"
