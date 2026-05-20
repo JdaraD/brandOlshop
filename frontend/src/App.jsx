@@ -4,6 +4,7 @@ import Layouts from "./layouts";
 import Home from "./components/pages/home";
 import Categories from "./components/pages/categories";
 import MenPage from "./components/pages/menPage";
+import WomenPage from "./components/pages/womenPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="categories" element={<Categories />} />
           <Route path="MenPage" element={<MenPage />} />
+          <Route path="WomenPage" element={<WomenPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

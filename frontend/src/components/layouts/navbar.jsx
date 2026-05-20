@@ -59,7 +59,7 @@ function Navbar() {
             </Link>
 
             <Link
-              to="/"
+              to="/WomenPage"
               className="border-b-2 border-transparent hover:border-black transition"
             >
               Women
