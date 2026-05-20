@@ -39,12 +39,6 @@ function Navbar() {
             </Link>
 
             <Link
-              to="/categories"
-              className="border-b-2 border-transparent hover:border-black transition"
-            >
-              Categories
-            </Link>
-            <Link
               to="/"
               className="border-b-2 border-transparent hover:border-black transition"
             >
@@ -66,7 +60,7 @@ function Navbar() {
             </Link>
 
             <Link
-              to="/"
+              to="/kidsPage"
               className="border-b-2 border-transparent hover:border-black transition"
             >
               Kids

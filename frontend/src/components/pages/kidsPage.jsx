@@ -1,57 +1,57 @@
 import { Link } from "react-router-dom";
 import { FaSearch, FaShoppingBag, FaHeart, FaUser } from "react-icons/fa";
 
-function womenPage() {
+function kidsPage() {
   const categories = [
     {
-      title: "Running",
+      title: "School Style",
       image:
-        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?q=80&w=1200&auto=format&fit=crop",
     },
     {
-      title: "Training",
+      title: "Play Time",
       image:
-        "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1200&auto=format&fit=crop",
     },
     {
-      title: "Lifestyle",
+      title: "Sport Kids",
       image:
-        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop",
     },
   ];
 
   const products = [
     {
       id: 1,
-      name: "Nike Air Force 1",
-      category: "Women's Shoes",
-      price: "Rp 2.299.000",
+      name: "Nike Air Kids",
+      category: "Kids Shoes",
+      price: "Rp 1.299.000",
       image:
-        "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop",
     },
     {
       id: 2,
-      name: "Nike Pegasus",
+      name: "Nike Junior Run",
       category: "Running Shoes",
-      price: "Rp 2.899.000",
+      price: "Rp 1.499.000",
       image:
-        "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=1200&auto=format&fit=crop",
     },
     {
       id: 3,
-      name: "Nike Sportswear",
-      category: "Lifestyle",
-      price: "Rp 1.799.000",
+      name: "Nike Play Set",
+      category: "Kids Outfit",
+      price: "Rp 999.000",
       image:
-        "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?q=80&w=1200&auto=format&fit=crop",
     },
     {
       id: 4,
-      name: "Nike Training Set",
-      category: "Training",
-      price: "Rp 2.099.000",
+      name: "Nike Kids Hoodie",
+      category: "Lifestyle",
+      price: "Rp 799.000",
       image:
-        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1200&auto=format&fit=crop",
     },
   ];
 
@@ -60,31 +60,31 @@ function womenPage() {
       {/* Hero */}
       <section className="relative h-[90vh]">
         <img
-          src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1800&auto=format&fit=crop"
-          alt="women hero"
+          src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1800&auto=format&fit=crop"
+          alt="kids hero"
           className="w-full h-full object-cover"
         />
 
         <div className="absolute inset-0 bg-black/40 flex items-center">
           <div className="px-8 md:px-20 text-white max-w-3xl">
-            <p className="uppercase tracking-[6px] mb-4">Nike Women</p>
+            <p className="uppercase tracking-[6px] mb-4">Nike Kids</p>
 
             <h1 className="text-5xl md:text-7xl font-black leading-tight mb-6">
-              STRONGER EVERY DAY
+              PLAY BIG EVERY DAY
             </h1>
 
             <p className="text-lg text-gray-200 mb-8">
-              Discover women’s collections designed for comfort, movement, and
-              everyday confidence.
+              Comfortable, colorful, and made for movement. Discover the latest
+              Nike collections for kids.
             </p>
 
             <div className="flex gap-4">
               <button className="bg-white text-black px-7 py-3 rounded-full font-semibold hover:bg-gray-200 transition">
-                Shop Now
+                Shop Kids
               </button>
 
               <button className="border border-white px-7 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition">
-                Explore
+                Explore More
               </button>
             </div>
           </div>
@@ -93,7 +93,7 @@ function womenPage() {
 
       {/* Categories */}
       <section className="max-w-7xl mx-auto px-6 py-20">
-        <h2 className="text-4xl font-bold mb-10">Shop By Collection</h2>
+        <h2 className="text-4xl font-bold mb-10">Shop By Category</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {categories.map((item, index) => (
@@ -126,7 +126,7 @@ function womenPage() {
       {/* Products */}
       <section className="max-w-7xl mx-auto px-6 pb-20">
         <div className="flex justify-between items-center mb-10">
-          <h2 className="text-4xl font-bold">Trending Products</h2>
+          <h2 className="text-4xl font-bold">Trending For Kids</h2>
 
           <button className="border px-5 py-2 rounded-full hover:bg-black hover:text-white transition">
             View All
@@ -156,10 +156,10 @@ function womenPage() {
         </div>
       </section>
 
-      {/* Banner */}
+      {/* Promo Banner */}
       <section className="relative h-[70vh]">
         <img
-          src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1800&auto=format&fit=crop"
+          src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1800&auto=format&fit=crop"
           alt="banner"
           className="w-full h-full object-cover"
         />
@@ -167,15 +167,15 @@ function womenPage() {
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center text-center">
           <div className="text-white px-6">
             <p className="uppercase tracking-[4px] mb-4">
-              Nike Women Collection
+              Nike Kids Collection
             </p>
 
             <h2 className="text-5xl md:text-7xl font-black mb-6">
-              BE UNSTOPPABLE
+              MOVE • PLAY • GROW
             </h2>
 
             <button className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-200 transition">
-              Discover More
+              Discover Collection
             </button>
           </div>
         </div>
@@ -184,4 +184,4 @@ function womenPage() {
   );
 }
 
-export default womenPage;
+export default kidsPage;
