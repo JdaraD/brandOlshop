@@ -25,6 +25,7 @@ class ProductsController extends Controller
                     'image' => $product->image
                         ? url('storage/' . $product->image)
                         : null,
+                    'background_color' => $product->background_color,
                     'description' => $product->description,
 
                     'category_name' => $product->category
@@ -53,6 +54,7 @@ class ProductsController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
+            'background_color' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'nullable|string',
         ]);
@@ -64,6 +66,7 @@ class ProductsController extends Controller
             'name' => $request->name,
             'price' => $request->price,
             'stock' => $request->stock,
+            'background_color' => $request->background_color,
             'image' => $path,
             'description' => $request->description,
         ]);

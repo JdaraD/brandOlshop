@@ -69,7 +69,7 @@ new class extends Component
                 
                 {{-- buttons --}}
                 <div class="flex items-center justify-end gap-2 w-full h-full rounded-md">
-                    <div id="confirm-delete" class="hidden confrimBtn flex items-center justify-center w-auto px-2 h-8 bg-red-500 hover:bg-red-800 rounded-md cursor-pointer text-white">
+                    <div id="confirm-delete" class="hidden confrimBtn items-center justify-center w-auto px-2 h-8 bg-red-500 hover:bg-red-800 rounded-md cursor-pointer text-white">
                         Hapus
                     </div>
                     <div id="add-overlay" class="flex items-center justify-center w-6 h-8 bg-green-500 hover:bg-green-800 rounded-md cursor-pointer">
@@ -116,6 +116,11 @@ new class extends Component
                                         <input type="number" name="price" placeholder="Price" class="border border-gray-300 rounded-md p-2 outline-none">
 
                                         <input type="number" name="stock" placeholder="Stock" class="border border-gray-300 rounded-md p-2 outline-none">
+
+                                        <div class="flex justify-between items-center border border-gray-300 rounded-md p-2 outline-none">
+                                            <label for="background_color" class="opacity-40 cursor-pointer">Background Color</label>
+                                            <input type="color" id="background_color" name="background_color" placeholder="Background color" class="flex w-6 h-6 border border-black rounded-full overflow-hidden cursor-pointer p-0 outline-none" value="#ffffff">
+                                        </div>
 
                                         <textarea name="description" rows="4" placeholder="Description" class="border border-gray-300 rounded-md p-2 outline-none"></textarea>
                                     </div>

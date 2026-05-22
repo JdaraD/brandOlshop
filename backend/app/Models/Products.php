@@ -14,6 +14,7 @@ class Products extends Model
         'price',
         'stock',
         'image',
+        'background_color',
         'description',
         'created_at',
         'updated_at',
