@@ -184,7 +184,7 @@ new class extends Component
                         <p class="text-center text-gray-500">No products found.</p>
                     @else
                         @foreach ($products as $item)
-                            <div wire:click="openOverlayProducts({{ $item->id }})" class="relative flex flex-col bg-linear-to-b from-blue-100 to-blue-200 shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden">
+                            <div wire:click="openOverlayProducts({{ $item->id }})" class="relative flex flex-col shadow-md rounded-md cursor-pointer hover:scale-95 transition duration-300 overflow-hidden" style="background-color: {{ $item->background_color ?? '#ffffff' }}">
 
                                 <input type="checkbox" class="select-box hidden absolute top-2 left-2 w-5 h-5 z-40">
 
