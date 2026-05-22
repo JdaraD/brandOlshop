@@ -60,7 +60,12 @@ function Home() {
           {products?.data?.map((product) => (
             <div key={product.id} className="group">
               {/* Image */}
-              <div className="overflow-hidden rounded-2xl bg-gray-100">
+              <div
+                className="overflow-hidden rounded-2xl border border-gray-200"
+                style={{
+                  backgroundColor: product.background_color || "#ffffff",
+                }}
+              >
                 <img
                   src={product.image}
                   alt={product.name}
