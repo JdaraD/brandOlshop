@@ -26,7 +26,9 @@ function Navbar() {
             <div className="flex justify-center items-center w-16 h-16">
               <img src={profile.logo} alt="logo" />
             </div>
-            <h1 className="text-2xl font-black tracking-wider">NIKE</h1>
+            <h1 className="text-2xl font-black tracking-wider">
+              {profile.name}
+            </h1>
           </div>
 
           {/* Menu */}

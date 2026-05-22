@@ -1,41 +1,19 @@
 import { Link } from "react-router-dom";
 import { FaSearch, FaShoppingBag, FaHeart, FaUser } from "react-icons/fa";
+import { use } from "react";
+import { useEffect, useState } from "react";
 
 function Home() {
-  const products = [
-    {
-      id: 1,
-      name: "Nike Air Max",
-      category: "Men's Shoes",
-      price: "Rp 2.399.000",
-      image:
-        "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop",
-    },
-    {
-      id: 2,
-      name: "Nike Revolution",
-      category: "Running Shoes",
-      price: "Rp 1.899.000",
-      image:
-        "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=1000&auto=format&fit=crop",
-    },
-    {
-      id: 3,
-      name: "Nike Jordan",
-      category: "Basketball Shoes",
-      price: "Rp 3.299.000",
-      image:
-        "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?q=80&w=1000&auto=format&fit=crop",
-    },
-    {
-      id: 4,
-      name: "Nike Sportwear",
-      category: "Lifestyle",
-      price: "Rp 1.499.000",
-      image:
-        "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?q=80&w=1000&auto=format&fit=crop",
-    },
-  ];
+  const [products, setProducts] = useState(null);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/products")
+      .then((response) => response.json())
+      .then((data) => setProducts(data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  if (!products) return <p>Loading...</p>;
 
   return (
     <div className="bg-white min-h-screen">
@@ -79,14 +57,14 @@ function Home() {
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {products.map((product) => (
+          {products?.data?.map((product) => (
             <div key={product.id} className="group">
               {/* Image */}
               <div className="overflow-hidden rounded-2xl bg-gray-100">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="h-80 w-full object-cover group-hover:scale-110 transition duration-500"
+                  className="h-80 w-full object-contain group-hover:scale-110 transition duration-500"
                 />
               </div>
 
@@ -94,9 +72,11 @@ function Home() {
               <div className="mt-4">
                 <h3 className="font-semibold text-lg">{product.name}</h3>
 
-                <p className="text-gray-500 text-sm">{product.category}</p>
+                <p className="text-gray-500 text-sm">{product.description}</p>
 
-                <p className="mt-2 font-bold">{product.price}</p>
+                <p className="mt-2 font-bold">
+                  Rp. {Number(product.price).toLocaleString()}
+                </p>
               </div>
             </div>
           ))}
