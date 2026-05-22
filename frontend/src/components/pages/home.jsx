@@ -75,7 +75,9 @@ function Home() {
 
               {/* Content */}
               <div className="mt-4">
-                <h3 className="font-semibold text-lg">{product.name}</h3>
+                <h3 className="font-semibold text-lg capitalize">
+                  {product.name}
+                </h3>
 
                 <p className="text-gray-500 text-sm">{product.description}</p>
 
