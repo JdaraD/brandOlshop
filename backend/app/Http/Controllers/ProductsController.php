@@ -12,7 +12,27 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        $products = Products::with('category')->get();
+
+        return response()->json([
+            'data' => $products->map(function ($product) {
+                return [
+                    'id' => $product->id,
+                    'id_category' => $product->id_category,
+                    'name' => $product->name,
+                    'price' => $product->price,
+                    'stock' => $product->stock,
+                    'image' => $product->image
+                        ? url('storage/' . $product->image)
+                        : null,
+                    'description' => $product->description,
+
+                    'category_name' => $product->category
+                        ? $product->category->name
+                        : null,
+                ];
+            })
+        ]);
     }
 
     /**
