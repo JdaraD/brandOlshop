@@ -3,9 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <title>{{ $title ?? config('app.name') }}</title>
-
+        @if ($profileWebsite) 
+        <title>{{ $profileWebsite->name ?? "Name Brand"}}</title>
+        <link rel="icon" href="{{ asset('storage/' . $profileWebsite->logo) }}" type="image/x-icon"/>
+        @endif
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
