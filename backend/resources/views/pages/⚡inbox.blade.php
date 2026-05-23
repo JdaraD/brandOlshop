@@ -1,10 +1,35 @@
 <?php
 
 use Livewire\Component;
+use App\Models\inbox;
 
 new class extends Component
 {
-    //
+    public $inboxes;
+    public $showDetailInbox = false;
+    public $selectedInbox;
+
+    public function loadInboxes()
+    {
+        $this->inboxes = inbox::all();
+    }
+
+    public function mount()
+    {
+        $this->loadInboxes();
+    }
+
+    // open overlay detail inbox
+    public function openDetailInbox($id)
+    {
+        $this->selectedInbox = inbox::find($id);
+        $this->showDetailInbox = true;
+    }
+
+    public function closeDetailInbox()
+    {
+        $this->showDetailInbox = false;
+    }
 };
 ?>
 
@@ -57,15 +82,15 @@ new class extends Component
                         <span class="text-sm text-gray-500">Offline</span>
                     </div>
                 </div> --}}
-                <div class="grid grid-cols-2 gap-2">
-                    @for ($i = 1; $i <= 6; $i++)
-                        <div class="flex flex-col w-full h-30 bg-white border border-gray-300 rounded-md shadow-md hover:shadow-xl transition duration-200">
+                <div class="grid grid-cols-2 gap-2" wire:poll.5s="loadInboxes">
+                    @foreach ($inboxes as $index => $inbox)
+                        <div wire:key="inbox-{{ $inbox->id }}" class="flex flex-col w-full h-30 bg-white border border-gray-300 rounded-md shadow-md hover:shadow-xl transition duration-200">
                             <div class="flex flex-col gap-1 p-4">
-                                <h3 class="text-base font-bold text-black">Inbox {{ $i }}</h3>
-                                <p class="text-sm text-black">Details of inbox message {{ $i }}</p>
+                                <h3 class="text-base font-bold text-black">Inbox {{ $index + 1 }}</h3>
+                                <p class="text-sm text-black">Details of inbox message {{ $index + 1 }}</p>
                             </div>
                             <div class="flex w-full justify-end px-2 gap-2">
-                                <button id="openViweInbox" class="flex items-center justify-center w-8 h-6 bg-green-500 hover:bg-green-600 rounded-md cursor-pointer">
+                                <button wire:click="openDetailInbox({{ $inbox->id }})" class="flex items-center justify-center w-8 h-6 bg-green-500 hover:bg-green-600 rounded-md cursor-pointer">
                                     <i class="fa-solid fa-eye text-xs text-white"></i>
                                 </button>
                                 <button id="openDeleteInbox" class="flex items-center justify-center w-8 h-6 bg-red-500 hover:bg-red-600 rounded-md cursor-pointer">
@@ -73,22 +98,31 @@ new class extends Component
                                 </button>
                             </div>
                         </div>
-                    @endfor
+                    @endforeach
 
                     {{-- overlay detail inbox --}}
-                    <div id="overlay-detail-inbox" class="hidden fixed inset-0 bg-black/50 backdrop-blur-md z-20">
+                    @if ($showDetailInbox)
+                    <div class="{{ $showDetailInbox ? '' : 'hidden' }} fixed inset-0 bg-black/50 backdrop-blur-md z-20">
                         <div class="flex flex-col justify-center items-center w-full h-full">
-                            <div class="flex flex-col gap-4 bg-white p-4 rounded-md transition duration-200">
+                            <div class="flex flex-col gap-4 bg-white p-4 min-w-100 rounded-md transition duration-200">
                                 <div class="flex flex-col gap-2">
-                                    <h3 class="text-lg font-bold text-black">Detail Inbox</h3>
-                                    <p class="text-sm text-black">This is the detail content for the selected inbox message.</p>
+                                    <div class="flex justify-between items-center">
+                                        <h3 class="text-lg font-bold text-black">Detail Inbox</h3>
+                                        <p>{{ \Carbon\Carbon::parse($selectedInbox->tanggal)->format('d M Y') }}</p>
+                                    </div>
+                                    <div class="flex flex-col gap-1">
+                                        <p class="text-sm font-bold">Name: {{ $selectedInbox->name }}</p>
+                                        <p class="text-sm font-bold">Email: {{ $selectedInbox->email }}</p>
+                                        <p class="text-sm text-black">{{ $selectedInbox->message }}</p>
+                                    </div>
                                 </div>
                                 <div class="flex gap-2 justify-end">
-                                    <button id="closeBtnView" class="px-2 py-1 text-md font-medium text-white bg-red-500 rounded-md hover:bg-red-800 transition cursor-pointer">Close</button>
+                                    <button wire:click="closeDetailInbox" class="px-2 py-1 text-md font-medium text-white bg-red-500 rounded-md hover:bg-red-800 transition cursor-pointer">Close</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endif
                     {{-- overlay detail inbox --}}
 
                     {{-- overlay delete inbox --}}
@@ -144,35 +178,35 @@ new class extends Component
     // script untuk toggle overlay calender
 
     // script untuk toggle overlay detail inbox
-    const openViweInbox = document.getElementById('openViweInbox');
-    const overlayDetailInbox = document.getElementById('overlay-detail-inbox');
-    const closeBtnView = document.getElementById('closeBtnView');
+    // const openViweInbox = document.getElementById('openViweInbox');
+    // const overlayDetailInbox = document.getElementById('overlay-detail-inbox');
+    // const closeBtnView = document.getElementById('closeBtnView');
 
-    // open overlay detail inbox when click btn view
-    openViweInbox.addEventListener('click', () => {
-        overlayDetailInbox.style.display = 'flex';
-    })
+    // // open overlay detail inbox when click btn view
+    // openViweInbox.addEventListener('click', () => {
+    //     overlayDetailInbox.style.display = 'flex';
+    // })
 
-    // close overlay detail inbox when click btn close
-    closeBtnView.addEventListener('click', () => {
-        overlayDetailInbox.style.display = 'none';
-    })
-    // script untuk toggle overlay detail inbox
+    // // close overlay detail inbox when click btn close
+    // closeBtnView.addEventListener('click', () => {
+    //     overlayDetailInbox.style.display = 'none';
+    // })
+    // // script untuk toggle overlay detail inbox
 
-    // script untuk toggle overlay delete inbox
-    const openDeleteInbox = document.getElementById('openDeleteInbox');
-    const overlayDeleteInbox = document.getElementById('overlay-delete-inbox');
-    const closeBtnDelete = document.getElementById('closeBtnDelete');
+    // // script untuk toggle overlay delete inbox
+    // const openDeleteInbox = document.getElementById('openDeleteInbox');
+    // const overlayDeleteInbox = document.getElementById('overlay-delete-inbox');
+    // const closeBtnDelete = document.getElementById('closeBtnDelete');
 
-    // open overlay delete inbox when click btn delete
-    openDeleteInbox.addEventListener('click', () => {
-        overlayDeleteInbox.style.display = 'flex';
-    })
+    // // open overlay delete inbox when click btn delete
+    // openDeleteInbox.addEventListener('click', () => {
+    //     overlayDeleteInbox.style.display = 'flex';
+    // })
 
-    // close overlay delete inbox when click btn close
-    closeBtnDelete.addEventListener('click', () => {
-        overlayDeleteInbox.style.display = 'none';
-    })
+    // // close overlay delete inbox when click btn close
+    // closeBtnDelete.addEventListener('click', () => {
+    //     overlayDeleteInbox.style.display = 'none';
+    // })
     // script untuk toggle overlay delete inbox
 
 
