@@ -13,6 +13,62 @@ function Home() {
       .catch((err) => console.log(err));
   }, []);
 
+  // Contact Form State
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    nomor_tlp: "",
+    message: "",
+    tanggal: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  // handle input
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // submit form
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+
+    try {
+      const response = await fetch("http://localhost:8000/api/inbox", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      console.log(data);
+
+      alert("Pesan berhasil dikirim!");
+
+      // reset form
+      setFormData({
+        name: "",
+        email: "",
+        nomor_tlp: "",
+        message: "",
+        tanggal: "",
+      });
+    } catch (error) {
+      console.log(error);
+      alert("Terjadi kesalahan!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (!products) return <p>Loading...</p>;
 
   return (
@@ -108,7 +164,103 @@ function Home() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* comment */}
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center px-5 py-10">
+        <div className="bg-white w-full max-w-2xl rounded-3xl shadow-xl p-8">
+          {/* Title */}
+          <div className="mb-8 text-center">
+            <h1 className="text-4xl font-bold mb-2">Contact Us</h1>
+
+            <p className="text-gray-500">Send your message to our team</p>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Name */}
+            <div>
+              <label className="block mb-2 font-medium">Full Name</label>
+
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Input your name"
+                className="w-full border border-gray-300 rounded-xl p-4 outline-none focus:border-black"
+                required
+              />
+            </div>
+
+            {/* Email */}
+            <div>
+              <label className="block mb-2 font-medium">Email Address</label>
+
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Input your email"
+                className="w-full border border-gray-300 rounded-xl p-4 outline-none focus:border-black"
+                required
+              />
+            </div>
+
+            {/* Phone */}
+            <div>
+              <label className="block mb-2 font-medium">Phone Number</label>
+
+              <input
+                type="text"
+                name="nomor_tlp"
+                value={formData.nomor_tlp}
+                onChange={handleChange}
+                placeholder="Input phone number"
+                className="w-full border border-gray-300 rounded-xl p-4 outline-none focus:border-black"
+                required
+              />
+            </div>
+
+            {/* Date */}
+            <div>
+              <label className="block mb-2 font-medium">Date</label>
+
+              <input
+                type="date"
+                name="tanggal"
+                value={formData.tanggal}
+                onChange={handleChange}
+                className="w-full border border-gray-300 rounded-xl p-4 outline-none focus:border-black"
+                required
+              />
+            </div>
+
+            {/* Message */}
+            <div>
+              <label className="block mb-2 font-medium">Message</label>
+
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                rows="5"
+                placeholder="Write your message..."
+                className="w-full border border-gray-300 rounded-xl p-4 outline-none focus:border-black resize-none"
+                required
+              ></textarea>
+            </div>
+
+            {/* Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-black text-white py-4 rounded-xl font-semibold hover:bg-gray-800 transition"
+            >
+              {loading ? "Sending..." : "Send Message"}
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
